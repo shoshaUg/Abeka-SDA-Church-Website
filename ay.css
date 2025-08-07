@@ -1,0 +1,1251 @@
+/* Youth Page Specific Styles */
+.youth-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+              url(keren.jpg) center/cover;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.youth-programs {
+  padding: 3rem 3%;
+  background: #f8f9fa;
+  text-align: center;
+}
+
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.program-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
+
+.program-card:hover {
+  transform: translateY(-10px);
+}
+
+.program-icon {
+  font-size: 1.5rem;
+  color: #6B8E23;
+  margin-bottom: 1rem;
+}
+
+.youth-gallery {
+  padding: 3rem 5%;
+  text-align: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.03);
+}
+
+/* Youth Dropdown Specific */
+nav .dropdown-content {
+  min-width: 220px;
+}
+
+nav .dropdown-content a {
+  padding: 10px 15px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .youth-hero {
+    height: 50vh;
+    padding: 0 2rem;
+  }
+  
+  .program-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.filter-buttons {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2rem 0;
+  text-align: center; /* Center the button text */
+}
+
+.filter-btn {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid #3A5A78;
+  background: transparent;
+  color: #3A5A78;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1rem;
+  text-align: center; /* Ensure text is centered */
+  min-width: 120px; /* Give buttons consistent width */
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background: #3A5A78;
+  color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .filter-buttons {
+    gap: 0.5rem;
+  }
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    min-width: 100px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  .filter-btn {
+    width: 100%;
+    max-width: 50px;
+  }
+}
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columns */
+  gap: 15px;
+  padding: 20px;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 1/1; /* Consistent image proportions */
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1200px) {
+  .gallery-container {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on smaller screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .gallery-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 column on small mobile */
+  }
+}
+
+/* Hover effects (unchanged) */
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.download-btn, .view-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.9);
+  color: #3A5A78;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.download-btn:hover, .view-btn:hover {
+  background: #D4A76A;
+  color: white;
+  transform: scale(1.1);
+}
+/* Pagination Styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.page-btn {
+  padding: 8px 16px;
+  background: #3A5A78;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: #0e0e0e;
+  transform: translateY(-2px);
+}
+
+.page-btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 6px;
+}
+
+.page-number {
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.page-number:hover:not(.active) {
+  background: #f0f0f0;
+}
+
+.page-number.active {
+  background: #3A5A78;
+  color: white;
+  border-color: #3A5A78;
+  font-weight: bold;
+}
+
+.ellipsis {
+  padding: 8px 4px;
+  user-select: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .pagination {
+    gap: 4px;
+  }
+  
+  .page-btn, .page-number {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+  
+  .ellipsis {
+    padding: 6px 2px;
+  }
+}
+/* Bible Stories Section */
+.bible-stories-section {
+  background-color: #f8f9fa;
+  padding: 4rem 2rem;
+  margin-top: 3rem;
+}
+
+.bible-stories-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bible-stories-section h2 {
+  text-align: center;
+  color: #3A5A78;
+  margin-bottom: 0.5rem;
+  font-size: 2.2rem;
+}
+
+.bible-stories-section h2 i {
+  margin-right: 10px;
+  color: #D4A76A;
+}
+
+.bible-stories-section .subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.stories-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.story-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  flex: 1;
+  min-width: 300px;
+  max-width: 350px;
+}
+
+.story-card:hover {
+  transform: translateY(-5px);
+}
+
+.story-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.story-content {
+  padding: 1.5rem;
+}
+
+.story-content h3 {
+  color: #3A5A78;
+  margin-bottom: 0.5rem;
+}
+
+.story-reference {
+  color: #D4A76A;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.story-teaser {
+  color: #555;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.story-link {
+  color: #3A5A78;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.story-link i {
+  margin-left: 5px;
+  transition: transform 0.3s;
+}
+
+.story-link:hover {
+  color: #D4A76A;
+}
+
+.story-link:hover i {
+  transform: translateX(3px);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #3A5A78;
+  color: white;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: #2c475e;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .story-card {
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 992px) {
+  .stories-grid {
+    gap: 1.5rem;
+  }
+  .story-card {
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 900px) {
+  .story-card {
+    min-width: 30%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .bible-stories-section {
+    padding: 3rem 1.5rem;
+  }
+  
+  .bible-stories-section h2 {
+    font-size: 1.8rem;
+  }
+  
+  .stories-grid {
+    flex-wrap: wrap;
+  }
+  
+  .story-card {
+    min-width: 45%;
+    max-width: 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  .story-card {
+    min-width: 50%;
+    max-width: 70%;
+  }
+  
+  .bible-stories-section {
+    padding: 2rem 1rem;
+  }
+  
+  .story-image {
+    height: 150px;
+  }
+  
+  .story-content {
+    padding: 1rem;
+  }
+}
+
+/* Popular Verses Section */
+.popular-verses {
+  padding: 3rem 2rem;
+  background-color: #f8f9fa;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.popular-verses h2 {
+  color: #3A5A78;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.popular-verses h2 i {
+  color: #D4A76A;
+  margin-right: 10px;
+}
+
+.verse-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.verse-nav {
+  background: #3A5A78;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.verse-nav:hover {
+  background: #D4A76A;
+  transform: scale(1.1);
+}
+
+.verse-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.verse-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: all 0.3s;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease, height 0.5s ease;
+}
+
+.verse-card.active {
+  opacity: 1;
+  height: auto;
+  transform: translateY(0);
+}
+
+.verse-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(58, 90, 120, 0.15);
+}
+
+.verse-card h3 {
+  color: #3A5A78;
+  margin-bottom: 0.5rem;
+}
+
+.verse-card p {
+  color: #555;
+  font-style: italic;
+}
+
+.verse-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.dot.active {
+  background: #3A5A78;
+  transform: scale(1.2);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .verse-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .verse-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .verse-card {
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .verse-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .popular-verses {
+    padding: 1rem 0.5rem;
+  }
+  
+  .popular-verses h2 {
+    font-size: 1rem;
+  }
+}
+
+/* Social Media Showcase */
+.social-showcase {
+  padding: 4rem 2rem;
+  background-color: #f8f9fa;
+}
+
+.social-showcase h2 {
+  text-align: center;
+  color: #3A5A78;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.social-showcase h2 i {
+  margin-right: 10px;
+}
+
+/* TikTok Row */
+.tiktok-row,
+.instagram-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.tiktok-video,
+.instagram-post {
+  flex: 1;
+  min-width: 50%;
+  max-width: 350px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Responsive iframes */
+.tiktok-video iframe,
+.instagram-post iframe {
+  width: 50%;
+  min-height: 250px;
+  border: none;
+}
+
+/* Social Media Links */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.3s;
+}
+
+.social-btn:hover {
+  transform: translateY(-3px);
+}
+
+.tiktok-btn {
+  background: #000000;
+}
+
+.instagram-btn {
+  background: #E1306C;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .tiktok-video,
+  .instagram-post {
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 992px) {
+  .tiktok-row,
+  .instagram-row {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .social-showcase {
+    padding: 3rem 1.5rem;
+  }
+  
+  .tiktok-video,
+  .instagram-post {
+    min-width: 50%;
+    max-width: 250px;
+  }
+  
+  .social-links {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .social-btn {
+    width: 80%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .tiktok-video iframe,
+  .instagram-post iframe {
+    min-height: 200px;
+  }
+}
+
+/* Youth Principles Section */
+.youth-principles {
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #b9d2e8 0%, #353d46 100%);
+  color: white;
+  text-align: center;
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+.principles-container {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.principles-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+.principle-card {
+  flex: 0 0 280px; /* Fixed width, don't grow or shrink */
+  background: rgba(202, 52, 52, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  scroll-snap-align: start; /* Snap scrolling to cards */
+  opacity: 1; /* Remove opacity animation */
+  transform: none; /* Remove scale animation */
+}
+
+.card-icon {
+  font-size: 2rem;
+  color: #D4A76A;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.card-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: #D4A76A;
+}
+
+.card-content p {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.law-list {
+  text-align: left;
+  padding-left: 1.2rem;
+  margin: 1rem 0;
+}
+
+.law-list li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
+.scripture-ref {
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 0.8rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .youth-principles {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .principles-container {
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .principle-card {
+    flex: 0 0 240px; /* Smaller cards on mobile */
+    padding: 1.2rem;
+  }
+  
+  .card-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .principle-card {
+    flex: 0 0 200px; /* Even smaller cards on very small screens */
+    padding: 1rem;
+  }
+  
+  .card-icon {
+    font-size: 1.5rem;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+  }
+  
+  .card-content p {
+    font-size: 0.9rem;
+  }
+}
+
+.card-content p {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.law-list {
+  text-align: left;
+  padding-left: 1.2rem;
+  margin: 1rem 0;
+}
+
+.law-list li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
+.scripture-ref {
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 0.8rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .youth-principles {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .principles-container {
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .principle-card {
+    flex: 0 0 240px; /* Smaller cards on mobile */
+    padding: 1.2rem;
+  }
+  
+  .card-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .principle-card {
+    flex: 0 0 200px; /* Even smaller cards on very small screens */
+    padding: 1rem;
+  }
+  
+  .card-icon {
+    font-size: 1.5rem;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+  }
+  
+  .card-content p {
+    font-size: 0.9rem;
+  }
+}
+/* Audio Player Styles */
+.audio-player {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+audio {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 0.5rem;
+  border-radius: 10px;
+}
+
+.audio-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.audio-btn {
+  background: #D4A76A;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.audio-btn:hover {
+  background: #c0955a;
+  transform: scale(1.1);
+}
+
+/* Hide default audio controls when custom controls are present */
+audio::-webkit-media-controls {
+  display: none !important;
+}
+
+/* Responsive Audio Player */
+@media (max-width: 768px) {
+  audio {
+    max-width: 100%;
+  }
+}
+/* Logo Container Styles */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #3A5A78;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 15px;
+  border-left: 1px solid #ddd;
+}
+
+.logo-image {
+  height: 45px;
+  width: auto;
+}
+
+.secondary-logo {
+  height: 35px;
+  width: auto;
+  opacity: 0.8;
+  transition: all 0.3s;
+}
+
+.secondary-logo:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .logo-group {
+    display: none; /* Hide secondary logos on tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .logo span {
+    display: none; /* Hide text on mobile */
+  }
+  
+  .logo-image {
+    height: 40px;
+  }
+}
+
+/* Animation for logos */
+@keyframes logoPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.secondary-logo:nth-child(1) { animation: logoPulse 4s infinite 0.5s; }
+.secondary-logo:nth-child(2) { animation: logoPulse 4s infinite 1s; }
+.secondary-logo:nth-child(3) { animation: logoPulse 4s infinite 1.5s; }
+.secondary-logo:nth-child(4) { animation: logoPulse 4s infinite 2s; }
+.youth-ministries {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+}
+
+.youth-ministries .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-intro {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+.ministry-card {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  padding: 25px;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+.ministry-card:hover {
+  transform: translateY(-5px);
+}
+
+.ministry-logo {
+  flex: 0 0 150px;
+  margin-right: 30px;
+}
+
+.ministry-logo img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.ministry-info {
+  flex: 1;
+}
+
+.ministry-info h3 {
+  color: #2a5f8b;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.ministry-info p {
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.read-more-btn {
+  display: inline-block;
+  background-color: #2a5f8b;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  max-width: fit-content;
+  transition: background-color 0.3s;
+}
+
+.read-more-btn:hover {
+  background-color: #1d4568;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .ministry-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .ministry-logo {
+    margin-right: 0;
+    margin-bottom: 20px;
+    flex: 0 0 auto;
+  }
+}
+   .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            align-items: flex-start;
+        }
+
+        .image-gallery {
+            flex: 0 0 25%;
+            min-width: 200px;
+            position: relative;
+            margin-right: 30px;
+            margin-bottom: 20px;
+        }
+
+        .image-gallery img {
+            position: absolute;
+            max-width: 100%;
+            height: 200px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .image-gallery img.active {
+            opacity: 1;
+        }
+
+        .content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+     
+
+        .additional-content {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .image-gallery {
+                flex: 0 0 100%;
+                margin-right: 0;
+                margin-bottom: 30px;
+                height: 200px; /* Smaller height on mobile */
+            }
+            
+            .image-gallery img {
+                max-height: 200px;
+                width: auto;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .image-gallery {
+                height: 150px; /* Even smaller on very small screens */
+            }
+            
+            .image-gallery img {
+                max-height: 150px;
+            }
+        }
+
+  .click {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: transparent;
+  color: #391800; /* Brown from your logo */
+  text-decoration: none;
+  font-weight: 600;
+  border: 2px solid #371700;
+  border-radius: 30px; /* Rounded pill shape */
+  transition: all 0.3s ease;
+  margin-left: 8px;
+}
+
+.click:hover {
+  background-color: #203fa3;
+  color: white;
+  transform: translateY(-2px); /* Subtle lift */
+  box-shadow: 0 4px 8px rgba(139, 69, 19, 0.2); /* Soft glow */
+}
+
+/* Animated arrow */
+.arrow {
+  margin-left: 6px;
+  transition: transform 0.3s ease;
+}
+
+.click:hover .arrow {
+  transform: translateX(4px); /* Arrow slides right */
+}

@@ -1,0 +1,804 @@
+/* Events Container Styles */
+.events-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+}
+
+/* Event Card Styles */
+.event-card {
+  flex: 1;
+  min-width: 300px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.8s ease;
+  opacity: 0.7;
+  transform: scale(0.95);
+}
+
+.event-card.active {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 0 10px 25px rgba(58, 90, 120, 0.2);
+}
+
+.event-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.active .event-image {
+  transform: scale(1.03);
+}
+
+.event-details {
+  padding: 1.5rem;
+}
+
+.event-date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6B8E23;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.active .event-date {
+  color: #3A5A78;
+}
+
+.event-title {
+  color: #3A5A78;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  transition: color 0.5s ease;
+}
+
+.active .event-title {
+  color: #D4A76A;
+}
+
+.event-description {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.event-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.event-location, .event-time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.5s ease;
+}
+
+.event-location strong, .event-time strong {
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.active .event-location,
+.active .event-time {
+  color: #D4A76A;
+}
+
+.event-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn {
+  background: #3A5A78;
+  color: white;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid #3A5A78;
+  color: #3A5A78;
+}
+
+.active .btn {
+  background: #D4A76A;
+}
+
+.active .btn-outline {
+  border-color: #D4A76A;
+  color: #D4A76A;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+/* Animation Sequence */
+@keyframes highlightCard {
+  0%, 30% { 
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 10px 25px rgba(58, 90, 120, 0.2);
+  }
+  33%, 100% {
+    opacity: 0.7;
+    transform: scale(0.95);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+}
+
+.event-card:nth-child(1) {
+  animation: highlightCard 20s infinite;
+}
+
+.event-card:nth-child(2) {
+  animation: highlightCard 20s infinite 6.66s;
+}
+
+.event-card:nth-child(3) {
+  animation: highlightCard 20s infinite 13.33s;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 1200px) {
+  .events-container {
+    padding: 2rem;
+  }
+  
+  .event-card {
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 992px) {
+  .events-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .event-card {
+    flex: 0 0 calc(50% - 1rem);
+    margin-bottom: 2rem;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: scale(1) !important;
+  }
+  
+  .event-card.active {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+}
+
+@media (max-width: 768px) {
+  .events-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .event-card {
+    flex: 0 0 100%;
+    max-width: 400px;
+  }
+  
+  .event-meta {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-actions {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Countdown Timer Styles */
+.service-countdown {
+  background: linear-gradient(135deg, #3A5A78 0%, #c18814 100%);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.countdown-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.countdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.countdown-header i {
+  font-size: 1.5rem;
+}
+
+.countdown-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown-item span {
+  font-size: 2rem;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  min-width: 70px;
+  display: inline-block;
+}
+
+.countdown-item small {
+  font-size: 0.7rem;
+  margin-top: 0.3rem;
+  opacity: 0.8;
+}
+
+.next-service-info {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.next-service-info strong {
+  color: #000000;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .countdown-timer {
+    gap: 1rem;
+  }
+  
+  .countdown-item span {
+    font-size: 2rem;
+    min-width: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown-timer {
+    gap: 0.5rem;
+  }
+  
+  .countdown-item span {
+    font-size: 1.5rem;
+    min-width: 60px;
+    padding: 0.3rem 0.5rem;
+  }
+  
+  .countdown-header h3 {
+    font-size: 1.1rem;
+  }
+  
+  .next-service-info {
+    font-size: 0.9rem;
+  }
+}
+/* Daily Verse Section */
+
+
+.verse-container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.daily-verse-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  color:#3A5A78;
+}
+
+.verse-content {
+  background: rgba(255,255,255,0.1);
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border-left: 5px solid #D4A76A;
+}
+
+#verse-text {
+  font-size: 1rem;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+#verse-reference {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #D4A76A;
+}
+
+.verse-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.verse-actions button {
+  padding: 0.3rem 0.8rem;
+  border: none;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 150;
+}
+
+.verse-actions button:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.verse-content {
+  animation: fadeIn 0.8s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .daily-verse-section {
+    padding: 2rem 1rem;
+  }
+  
+  #verse-text {
+    font-size: 1.2rem;
+  }
+  
+  .verse-content {
+    padding: 1.5rem;
+  }
+}
+/* Prayer Request Button */
+.prayer-btn {
+  background-color: #3A5A78;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  max-width: fit-content;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.prayer-btn:hover {
+  background-color: #000000;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 2% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 95%;
+  max-width: 650px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.close {
+  color: #aaa;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.close:hover {
+  color: black;
+}
+
+/* Form Iframe */
+#prayerForm {
+  width: 100%;
+  height: 85vh; /* Use viewport height units */
+  min-height: 400px;
+  border: none;
+  display: block;
+}
+
+/* Confirmation Modal */
+#confirmationModal .modal-content {
+  text-align: center;
+  padding: 40px;
+  max-width: 500px;
+}
+
+.confirmation-btn {
+  background-color: #3A5A78;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 992px) {
+  .modal-content {
+    width: 90%;
+    margin: 5% auto;
+  }
+  
+  #prayerForm {
+    height: 70vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 10% auto;
+    padding: 15px;
+  }
+  
+  #prayerForm {
+    height: 65vh;
+    min-height: 300px;
+  }
+  
+  .close {
+    right: 15px;
+    top: 5px;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-content {
+    margin: 15% auto;
+    padding: 10px;
+  }
+  
+  #prayerForm {
+    height: 60vh;
+    min-height: 250px;
+  }
+  
+  #confirmationModal .modal-content {
+    padding: 30px 20px;
+  }
+  
+  .prayer-btn {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+}
+
+/* For very small devices */
+@media (max-width: 400px) {
+  #prayerForm {
+    height: 55vh;
+  }
+  
+  .modal-content {
+    margin: 20% auto;
+  }
+}
+
+/* Prevent horizontal scrolling on small devices */
+html, body {
+  overflow-x: hidden;
+}
+/* Donation Modal Specific Styles */
+#donationModal .modal-content {
+  max-width: 600px;
+}
+
+.payment-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.payment-option {
+  flex: 1;
+  min-width: 250px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.amount-options {
+  margin: 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.amount-btn {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.amount-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.amount-btn.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+#customAmount {
+  padding: 8px;
+  width: 100px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.paypal-btn {
+  background-color: #FFC439;
+  color: #111;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.paypal-btn:hover {
+  background-color: #F2BB36;
+}
+
+@media (max-width: 600px) {
+  .payment-options {
+    flex-direction: column;
+  }
+}
+
+/* New Here Section - Compact Version */
+.new-here-section {
+  background-color: #f8f9fa;
+  padding: 2rem 1rem;
+  color: #333;
+}
+
+.welcome-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+}
+
+.welcome-header h2 {
+  color: #3A5A78;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-header p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.expect-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.expect-card, .faq-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-size: 0.85rem;
+}
+
+.expect-card h3, .faq-card h3 {
+  color: #3A5A78;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+}
+
+.expect-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.expect-list li {
+  margin-bottom: 0.6rem;
+  padding-left: 1.2rem;
+  position: relative;
+  line-height: 1.3;
+}
+
+.expect-list li i {
+  position: absolute;
+  left: 0;
+  color: #D4A76A;
+  font-size: 0.8rem;
+  width: 1.2rem;
+}
+
+.faq-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-row {
+  display: flex;
+  border-bottom: 1px solid #eee;
+  padding: 0.5rem 0;
+  flex-wrap: wrap;
+}
+
+.faq-question {
+  flex: 1;
+  min-width: 120px;
+  font-weight: 600;
+  color: #3A5A78;
+  font-size: 0.8rem;
+}
+
+.faq-answer {
+  flex: 1;
+  min-width: 120px;
+  font-size: 0.8rem;
+}
+
+.visit-cta {
+  text-align: center;
+  max-width: 800px;
+  margin: 1.5rem auto 0;
+  padding: 1rem;
+  background: #3A5A78;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.visit-cta h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.btn-visit {
+  background-color: #D4A76A;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .expect-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+  
+  .expect-card, .faq-card {
+    padding: 0.8rem;
+  }
+  
+  .faq-row {
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.3rem 0;
+  }
+  
+  .faq-question, .faq-answer {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .new-here-section {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .welcome-header h2 {
+    font-size: 1.3rem;
+  }
+  
+  .expect-card h3, .faq-card h3 {
+    font-size: 1rem;
+  }
+  
+  .expect-list li {
+    font-size: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .visit-cta {
+    padding: 0.8rem;
+  }
+}

@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abeka SDA Church - Welcome</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ay.css">
+   <link rel="stylesheet" href="update_event.css">
+  <link rel="icon" type="png" sizes="32x32" href="abeka.jpg">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  /* Features Section */
+.features {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  flex: 1;
+  min-width: 250px;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.feature-card i {
+  font-size: 2.5rem;
+  color: #485a82;
+  margin-bottom: 1rem;
+}
+
+.btn-small {
+  padding: 0.5rem 1.5rem;
+  background: #3A5A78;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s;
+}
+
+.btn-small:hover {
+  background: #000000;
+  transform: translateY(-3px);
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+  background-color: #f8f9fa;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Toast Notification */
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #6B8E23;
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1000;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .feature-card {
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .modal-content {
+    margin: 10% auto;
+    width: 95%;
+  }
+}
+.giving-footer {
+  text-align: center;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.platform-logo {
+  height: 20px;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+/* Footer Give Button */
+.footer-give-btn {
+  background-color: #3A5A78; /* Slightly darker green for footer */
+  margin: 20px auto;
+  display: block; /* Center the button */
+}
+
+/* Smooth scrolling behavior for the whole page */
+html {
+  scroll-behavior: smooth;
+}
+</style>
+</head>
+<body>
+  <div class="service-countdown">
+  <div class="countdown-container">
+    <div class="countdown-header">
+      <i class="fas fa-church"></i>
+      <h3>Next Service In:</h3>
+    </div>
+    <div class="countdown-timer">
+      <div class="countdown-item">
+        <span id="days">00</span>
+        <small>Days</small>
+      </div>
+      <div class="countdown-item">
+        <span id="hours">00</span>
+        <small>Hours</small>
+      </div>
+      <div class="countdown-item">
+        <span id="minutes">00</span>
+        <small>Minutes</small>
+      </div>
+      <div class="countdown-item">
+        <span id="seconds">00</span>
+        <small>Seconds</small>
+      </div>
+    </div>
+    <div class="next-service-info">
+      <p>Next: <strong>Divine Service</strong> - Saturday, 09:30 AM</p>
+    </div>
+  </div>
+</div>
+  <!-- Announcement Marquee -->
+  <div class="marquee">
+    <marquee behavior="scroll" direction="left">
+      🎉 Join us for Sabbath Service at 9:30 this and every Saturday | 🙏 Prayer Meetings every Wednesday | 🌟 Annual Camp Meeting coming soon!
+    </marquee>
+  </div>
+
+  <!-- Navbar with Icons -->
+  <nav>
+    <div class="logo">
+    <img src="abeka.jpg" alt="Church Logo" class="logo-image">
+    <span>Abeka SDA Church</span>
+  </div>
+  
+    <ul>
+      <li>
+        <a href="index.html" class="active">
+          <i class="fas fa-home"></i>
+          <span class="nav-text">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="bible.html">
+          <i class="fas fa-bible"></i>
+          <span class="nav-text">Bible</span>
+        </a>
+      </li>
+      <li >
+        <div class="dropdown">
+        <a href="ay.html">
+          <i class="fas fa-users"></i>
+          <span class="nav-text">Youth Ministry</span>
+        </a>
+        <div class="dropdown-content">
+          <a href="adventurers.html">Adventurers</a>
+          <a href="pathfinders.html">Pathfinders</a>
+          
+          <a href="senior.html">Senior Youth</a>
+          <a href="gallery.html">Gallery</a>
+        </div>
+        </div>
+      </li>
+      <li>
+        <a href="event.html">
+          <i class="fas fa-microphone-alt"></i>
+          <span class="nav-text">Sermon</span>
+        </a>
+      </li>
+            <li>
+        <a href="about.html">
+          <i class="fas fa-info-circle"></i>
+          <span class="nav-text">About</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section with Date/Time -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 style="color: antiquewhite;">Welcome to Abeka SDA Church</h1>
+      <p>Where faith, hope, and love come together</p>
+      <div class="datetime">
+        <div id="current-date"><i class="far fa-calendar-alt"></i> Loading date...</div>
+        <div id="current-time"><i class="far fa-clock"></i> Loading time...</div>
+      </div>
+      <button id="giveOnlineBtn" class="btn"><i class="fas fa-hand-holding-usd"></i>Give Online</button>
+      
+    </div>
+  </section>
+
+<!-- Donation Modal have to put the right link -->
+<div id="donationModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Give Your Offering</h2>
+    <div class="payment-options">
+      <!-- PayPal Option -->
+      <div class="payment-option">
+        <h3>Paypal</h3>
+        <form action="https://www.paypal.com/donate" method="post" target="_blank">
+          <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL@example.com">
+          <input type="hidden" name="item_name" value="Church Offering">
+          <input type="hidden" name="currency_code" value="USD">
+          <div class="amount-options">
+            <button type="button" class="amount-btn" data-amount="10">$10</button>
+            <button type="button" class="amount-btn" data-amount="20">$20</button>
+            <button type="button" class="amount-btn" data-amount="50">$50</button>
+            <input type="number" name="amount" id="customAmount" min="1" placeholder="Other amount">
+          </div>
+          <button type="submit" class="paypal-btn"><i class="fab fa-paypal"></i>Give via PayPal</button>
+        </form>
+      </div>
+      
+      <!-- Credit Card Option (would need real payment processor) -->
+      <div class="payment-option">
+        <h3>Credit/Debit Card</h3>
+        <p>Coming soon - we're working on adding direct card payments.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Features Section -->
+<section class="features">
+  <div class="feature-card">
+    <section class="daily-verse-section">
+    <div class="verse-container">
+    <i class="fas fa-bible"></i> 
+    <h2>Daily Verse</h2>
+    <div class="verse-content">
+      <p id="verse-text">"For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."</p>
+      <p id="verse-reference">John 3:16</p>
+    </div>
+    <div class="verse-actions">
+      <button id="share-verse"><i class="fas fa-share"></i> Share</button>
+      <button id="save-verse"><i class="far fa-bookmark"></i> Save</button>
+    </div>
+    </div>
+    </section>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-calendar-alt"></i>
+    <h3>This Week</h3>
+   <ul class="expect-list">
+          <li><i class="fas fa-book"></i> <strong>Sunday:</strong> Bible Study @ 6:30PM</li>
+           <li><i class="fas fa-music"></i> <strong>Monday:</strong> Choir&Singing Band Rehearsal @ 7PM</li>
+          <li><i class="fas fa-church"></i> <strong>Saturday:</strong> Sabbath Service @ 10AM</li>
+          <li><i class="fas fa-pray"></i> <strong>Wednesday:</strong> Prayers @ 7PM</li>
+          <li><i class="fas fa-music"></i> <strong>Thursday:</strong> Choir&Singing Band Rehearsal @ 7PM</li>
+          <li><i class="fas fa-users"></i> <strong>Friday:</strong> Youth Meeting @ 7PM</li>
+        </ul>
+  </div>
+  <div class="feature-card">
+    <i class="fas fa-pray"></i>
+    <h3>Prayer Request</h3>
+    <p>Share your prayer needs with us</p>
+    <p>We will pray for you and keep your request confidential.</p>
+    
+    <button id="prayerRequestBtn" class="prayer-btn">Submit Prayer Request</button>
+  </div>
+
+<!-- Prayer Request Modal -->
+<div id="prayerModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <iframe id="prayerForm" src="" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+  </div>
+</div>
+
+<!-- Submission Confirmation Modal -->
+<div id="confirmationModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Thank You!</h3>
+    <p>Your prayer request has been submitted.</p>
+    <p>We'll be praying for you.</p>
+    <button id="closeConfirmationBtn" class="confirmation-btn">Close</button>
+  </div>
+</div>
+</section>
+
+  
+<div class="events-container">
+  <!-- First Event -->
+  <div class="event-card">
+    <img src="worship.jpg" alt="Divine Service" class="event-image" >
+    <div class="event-details">
+      <div class="event-date">
+        <i class="far fa-calendar-alt"></i>
+        <span>Every Saturday</span>
+      </div>
+      <h3 class="event-title">Divine Service</h3>
+      <p class="event-description">Join us for our weekly worship service<br>Come as you are and find a place to belong.<br>We can't wait to worship with you this Saturday. </p>
+      <div class="event-meta">
+        <div class="event-location">
+          <i class="fas fa-map-marker-alt"></i>
+          <strong>Main Sanctuary<br>
+          Abeka SDA Church</strong>
+        </div>
+        <div class="event-time">
+          <i class="far fa-clock"></i>
+          <strong>09:30 AM</strong>
+        </div>
+      </div>
+      <div class="event-actions">
+        <a href="event.html" class="btn">Details</a>
+       
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Event -->
+  <div class="event-card">
+    <img src="prayer.jpg" alt="Wednesday Prayers" class="event-image" >
+    <div class="event-details">
+      <div class="event-date">
+        <i class="far fa-calendar-alt"></i>
+        <span>Every Wednesday</span>
+      </div>
+      <h3 class="event-title">Midweek Prayer Service</h3>
+      <p class="event-description">Looking for peace this week? <br>Find it with us at our Wednesday night prayer service.<br> Join us at this and every Wednesday!</p>
+      <div class="event-meta">
+        <div class="event-location">
+          <i class="fas fa-map-marker-alt"></i>
+          <strong>Fellowship Hall<br>
+          Abeka SDA Church</strong>
+        </div>
+        <div class="event-time">
+          <i class="far fa-clock"></i>
+          <strong>6:00 PM</strong>
+        </div>
+      </div>
+      <div class="event-actions">
+        <a href="event.html" class="btn">Details</a>
+       
+      </div>
+    </div>
+  </div>
+
+  <!-- Third Event -->
+  <div class="event-card">
+    <img src="royals/ay.jpg" alt="Youth Fellowship" class="event-image" >
+    <div class="event-details">
+      <div class="event-date">
+        <i class="far fa-calendar-alt"></i>
+        <span>First Friday Monthly</span>
+      </div>
+      <h3 class="event-title">Youth Meeting</h3>
+      <p class="event-description">An evening of worship, games and fellowship for ages 13-25.</p>
+      <div class="event-meta">
+        <div class="event-location">
+          <i class="fas fa-map-marker-alt"></i>
+          <strong>Church Auditorium<br>
+          Abeka SDA Church</strong>
+        </div>
+        <div class="event-time">
+          <i class="far fa-clock"></i>
+          <strong>7:00 PM</strong>
+        </div>
+      </div>
+      <div class="event-actions">
+        <a href="event.html" class="btn">Details</a>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="testimonials-carousel">
+  <h2 class="section-title">Member Testimonies</h2>
+  <!-- First row scrolling left -->
+  <div class="carousel-wrapper top-row">
+    <div class="gradient-edge left-edge"></div>
+    <div class="carousel-container">
+      <div class="carousel-track left-scroll">
+        <!-- Testimony Cards (3 total) -->
+        <div class="testimony-card">
+          <div class="testimony-content">
+            <img src="royals/aboy.jpg" alt="Keren" class="member-photo">
+            <h3 class="member-name">Maxwell Sarpong</h3>
+            <p class="member-role">Member since 1999</p>
+            <div class="testimony-text">
+              <i class="fas fa-quote-left"></i>
+              <p>This church transformed my life through its powerful teachings.</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimony-card">
+          <div class="testimony-content">
+            <img src="royals/dennis.jpeg" alt="Yaw Annor" class="member-photo">
+            <h3 class="member-name">Dennis Oduro Snr.</h3>
+            <p class="member-role">Member since 1994</p>
+            <div class="testimony-text">
+              <i class="fas fa-quote-left"></i>
+              <p>The community here has been so supportive during difficult times.</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimony-card">
+          <div class="testimony-content">
+            <img src="royals/esk.jpeg" alt="Mike" class="member-photo">
+            <h3 class="member-name">E.S.K. Amarh</h3>
+            <p class="member-role">Member since 1982</p>
+            <div class="testimony-text">
+              <i class="fas fa-quote-left"></i>
+              <p>This church transformed my life through its powerful teachings.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="gradient-edge right-edge"></div>
+  </div>
+  
+  <!-- Second row scrolling right -->
+  <div class="carousel-wrapper bottom-row">
+    <div class="gradient-edge left-edge"></div>
+    <div class="carousel-container">
+      <div class="carousel-track right-scroll">
+        <!-- Testimony Cards (3 total) -->
+        <div class="testimony-card">
+          <div class="testimony-content">
+            <img src="royals/abena.png" alt="Abena" class="member-photo">
+            <h3 class="member-name">Ewura Abena</h3>
+            <p class="member-role">Member since 2015</p>
+            <div class="testimony-text">
+              <i class="fas fa-quote-left"></i>
+              <p>The children's ministry is outstanding - my fellow kids love coming to church!</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimony-card">
+          <div class="testimony-content">
+            <img src="royals/narh1.jpeg" alt="David" class="member-photo">
+            <h3 class="member-name">Vincent Narh</h3>
+            <p class="member-role">Member since 1991</p>
+            <div class="testimony-text">
+              <i class="fas fa-quote-left"></i>
+              <p>I've found true purpose and meaning through this church's guidance.</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimony-card">
+          <div class="testimony-content">
+            <img src="royals/dhimple.jpg" alt="Dhimples" class="member-photo">
+            <h3 class="member-name">Ama Birago</h3>
+            <p class="member-role">Member since 2002</p>
+            <div class="testimony-text">
+              <i class="fas fa-quote-left"></i>
+              <p>The worship experiences here are truly transformative and uplifting.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="gradient-edge right-edge"></div>
+  </div>
+</section>
+<!-- Floating Chat Button -->
+<div class="floating-chat-container">
+  <div class="chat-tooltip">Need help or prayer? Chat with us!</div>
+  <a href="https://wa.me/+233534268869" class="floating-chat-btn whatsapp" target="_blank">
+    <i class="fab fa-whatsapp"> </a></i>
+ 
+
+  <div class="chat-tooltip">Need help or prayer? Chat with us!</div>
+   <a href="https://www.facebook.com/theabekasdachurch" class="floating-chat-btn messenger" target="_blank">
+   <i class="fab fa-facebook-messenger"></i>
+  </a>
+</div>
+
+<section class="new-here-section">
+  <div class="container">
+    <div class="welcome-header">
+      <h2><i class="fas fa-hands-helping"></i> New Here? Welcome to Abeka SDA Church!</h2>
+      <p>We're so glad you're checking us out! Whether you're exploring faith, new to the area, or just curious, we want you to feel at home.</p>
+    </div>
+
+    <div class="expect-grid">
+      <!-- What to Expect -->
+      <div class="expect-card">
+        <h3><i class="fas fa-dove"></i> What to Expect</h3>
+        <ul class="expect-list">
+          <li><i class="fas fa-smile"></i> <strong>Warm Welcome:</strong> Friendly greeters will meet you at the door</li>
+          <li><i class="fas fa-tshirt"></i> <strong>Casual Atmosphere:</strong> Come as you are—African wear, suits, or sandals</li>
+          <li><i class="fas fa-music"></i> <strong>Engaging Worship:</strong> Uplifting music and relevant messages</li>
+          <li><i class="fas fa-child"></i> <strong>Kids & Youth Programs:</strong> Safe, fun environments for all ages</li>
+          <li><i class="fas fa-clock"></i> <strong>Service Length:</strong> About 75 minutes with connection time after</li>
+        </ul>
+      </div>
+
+      <!-- FAQ -->
+      <div class="faq-card">
+        <h3><i class="fas fa-question-circle"></i> Frequently Asked Questions</h3>
+        <div class="faq-table">
+          <div class="faq-row">
+            <div class="faq-question">What time are services?</div>
+            <div class="faq-answer">Saturdays at 9:00 AM & 12:30 PM</div>
+          </div>
+          <div class="faq-row">
+            <div class="faq-question">Where do I park?</div>
+            <div class="faq-answer">Free parking available next to the church</div>
+          </div>
+          <div class="faq-row">
+            <div class="faq-question">Do I need to dress up?</div>
+            <div class="faq-answer">Not at all! Be comfortable</div>
+          </div>
+          <div class="faq-row">
+            <div class="faq-question">Is there something for my kids?</div>
+            <div class="faq-answer">Age-specific programs during each service</div>
+          </div>
+          <div class="faq-row">
+            <div class="faq-question">Will I be singled out?</div>
+            <div class="faq-answer">Never - participate as much or little as you like</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+</section>
+
+  <!-- Footer with Contact & Links -->
+<footer class="modern-footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Connect With Us</h3>
+      <div class="social-handles">
+        <a href="https://www.facebook.com/theabekasdachurch" target="_blank" class="social-icon fb">
+          <i class="fab fa-facebook-f"></i>
+          <span class="tooltip">Facebook</span>
+        </a>
+        <a href="https://www.instagram.com/royalpfclub" target="_blank" class="social-icon ig">
+          <i class="fab fa-instagram"></i>
+          <span class="tooltip">Instagram</span>
+        </a>
+        <a href="https://www.youtube.com/royalspfclub" target="_blank" class="social-icon yt">
+          <i class="fab fa-youtube"></i>
+          <span class="tooltip">YouTube</span>
+        </a>
+        <a href="https://www.tiktok.com/@abeka_sda_church" target="_blank" class="social-icon tt">
+          <i class="fab fa-tiktok"></i>
+          <span class="tooltip">TikTok</span>
+        </a>
+        <a href="https://www.wa.me/+233534268869" target="_blank" class="social-icon wa">
+          <i class="fab fa-whatsapp"></i>
+          <span class="tooltip">WhatsApp</span>
+        </a>
+      </div>
+      <section class="church-map-section">
+  <h2>Visit Us</h2>
+ <div class="map-container">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.7658440588652!2d-0.24522355677653027!3d5.60156989600896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf998ca7bfb8bb%3A0x5a2562a371bc9fac!2sAbeka%20SDA%20Church!5e0!3m2!1sen!2sgh!4v1754309034451!5m2!1sen!2sgh" 
+  width="350" 
+  height="150" style="border:0;" 
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+  <div class="map-actions">
+    <a href="https://www.google.com/maps/dir//5.6037,-0.2270" target="_blank" class="map-btn">
+      <i class="fas fa-directions"></i> Get Directions
+    </a>
+  </div>
+</div>
+</section>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="ay.html">Ministries</a></li>
+        <li><a href="event.html">Sermons</a></li>
+        <li><button id="footerGiveBtn" class="btn"><i class="fas fa-hand-holding-usd"></i>Give Online</button></li>
+      </ul>
+    </div>
+    
+ 
+    <div class="footer-section">
+      <h3>Contact Info</h3>
+      <p><i class="fas fa-map-marker-alt"></i> JQ24+JQG, Abeka-Lapaz<br>Adjacent Rene School, Accra</p>
+      <p><i class="fas fa-phone"></i> (+233) 53-426-8869</p>
+      <p><i class="fas fa-envelope"></i> info@abekasdachurch.com</p>
+    </div>
+ </div>
+   
+
+  
+  <div class="footer-bottom">
+     <div class="giving-footer">
+    <p>Secure online giving powered by <img src="royals/egiving.png" alt="eGiving Platform" class="platform-logo"></p>
+    </div>
+    <p>&copy; <span id="current-year"></span> Abeka SDA Church. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Set the date we're counting down to (next Saturday 10:30 AM)
+function getNextServiceDate() {
+  const now = new Date();
+  const day = now.getDay(); // 0 = Sunday, 6 = Saturday
+  const hour = now.getHours();
+  const minutes = now.getMinutes();
+  
+  // If it's Saturday before 10:30 AM, countdown to today's service
+  if (day === 6 && (hour < 10 || (hour === 10 && minutes < 30))) {
+    const serviceDate = new Date();
+    serviceDate.setHours(9, 30, 0, 0);
+    return serviceDate;
+  }
+  
+  // Otherwise countdown to next Saturday
+  const daysUntilSaturday = (6 - day + 7) % 7;
+  const nextSaturday = new Date();
+  nextSaturday.setDate(now.getDate() + daysUntilSaturday);
+  nextSaturday.setHours(9, 30, 0, 0);
+  return nextSaturday;
+}
+
+// Update the countdown every 1 second
+const countdown = setInterval(function() {
+  const countDownDate = getNextServiceDate().getTime();
+  const now = new Date().getTime();
+  const distance = countDownDate - now;
+  
+  // Time calculations
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  // Display the result
+  document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+  document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+  document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+  document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+  
+  // If the countdown is finished
+  if (distance < 0) {
+    clearInterval(countdown);
+    document.querySelector(".countdown-timer").innerHTML = 
+      '<div class="service-started">Service has started! Join us now!</div>';
+  }
+}, 1000);
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Array of verses (you can expand this list)
+  const bibleVerses = [
+    {
+      text: "Trust in the LORD with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      reference: "Proverbs 3:5-6"
+    },
+    {
+      text: "I can do all this through him who gives me strength.",
+      reference: "Philippians 4:13"
+    },
+    {
+      text: "The LORD is my shepherd, I lack nothing.",
+      reference: "Psalm 23:1"
+    },
+    {
+      text: "For I know the plans I have for you, declares the LORD, plans to prosper you and not to harm you, plans to give you hope and a future.",
+      reference: "Jeremiah 29:11"
+    },
+    {
+      text: "But those who hope in the LORD will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",
+      reference: "Isaiah 40:31"
+    },
+    {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",
+      reference: "Philippians 4:6"
+    },
+    {
+      text: "Jesus Christ is the same yesterday and today and forever.",
+      reference: "Hebrews 13:8"
+    }
+  ];
+
+  // Get today's date to use as seed for verse selection
+  const today = new Date();
+  const startOfYear = new Date(today.getFullYear(), 0, 0);
+  const diff = today - startOfYear;
+  const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+  
+  // Select verse based on day of year (cycles through array)
+  const verseIndex = dayOfYear % bibleVerses.length;
+  const todaysVerse = bibleVerses[verseIndex];
+  
+  // Display the verse
+  document.getElementById('verse-text').textContent = `"${todaysVerse.text}"`;
+  document.getElementById('verse-reference').textContent = todaysVerse.reference;
+  
+  // Share functionality
+  document.getElementById('share-verse').addEventListener('click', function() {
+    const shareText = `Today's Bible Verse: "${todaysVerse.text}" - ${todaysVerse.reference}`;
+    
+    if (navigator.share) {
+      navigator.share({
+        title: 'Daily Bible Verse',
+        text: shareText,
+        url: window.location.href
+      }).catch(err => {
+        console.log('Error sharing:', err);
+        fallbackShare(shareText);
+      });
+    } else {
+      fallbackShare(shareText);
+    }
+  });
+  
+  // Save functionality (using localStorage)
+  document.getElementById('save-verse').addEventListener('click', function() {
+    let savedVerses = JSON.parse(localStorage.getItem('savedVerses') || '[]');
+    
+    // Check if verse already saved
+    const alreadySaved = savedVerses.some(v => v.reference === todaysVerse.reference && v.text === todaysVerse.text);
+    
+    if (!alreadySaved) {
+      savedVerses.push({
+        text: todaysVerse.text,
+        reference: todaysVerse.reference,
+        dateSaved: new Date().toISOString()
+      });
+      localStorage.setItem('savedVerses', JSON.stringify(savedVerses));
+      
+      // Visual feedback
+      const btn = document.getElementById('save-verse');
+      btn.innerHTML = '<i class="fas fa-check"></i> Saved!';
+      btn.style.backgroundColor = '#4CAF50';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="far fa-bookmark"></i> Save';
+        btn.style.backgroundColor = '';
+      }, 2000);
+    } else {
+      alert('This verse is already saved in your collection!');
+    }
+  });
+
+  // Fallback share method
+  function fallbackShare(text) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Verse copied to clipboard!');
+      }).catch(err => {
+        console.error('Could not copy text: ', err);
+        showToast('Failed to share verse');
+      });
+    } else {
+      // Last resort fallback
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      
+      try {
+        document.execCommand('copy');
+        showToast('Verse copied to clipboard!');
+      } catch (err) {
+        console.error('Fallback copy failed:', err);
+        showToast('Failed to share verse');
+      }
+      document.body.removeChild(textArea);
+    }
+  }
+
+  // Show toast notification
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'verse-toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+      toast.classList.add('show');
+    }, 10);
+    
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => {
+        document.body.removeChild(toast);
+      }, 300);
+    }, 3000);
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Get elements
+  const prayerBtn = document.getElementById('prayerRequestBtn');
+  const prayerModal = document.getElementById('prayerModal');
+  const confirmationModal = document.getElementById('confirmationModal');
+  const closeButtons = document.getElementsByClassName('close');
+  const closeConfirmationBtn = document.getElementById('closeConfirmationBtn');
+  const prayerForm = document.getElementById('prayerForm');
+ 
+  // Replace with your Google Form URL (use the embedded version)
+  const googleFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSeb1RpJYBGLV7XDMu33oly7lWFSHIR5muvQrNGHHYIy12WM4g/viewform?embedded=true" ;
+  prayerForm.src = googleFormUrl;
+  
+  // Open prayer modal
+  prayerBtn.addEventListener('click', function() {
+    prayerModal.style.display = 'block';
+  });
+  
+  // Close modals when clicking X
+  for (let i = 0; i < closeButtons.length; i++) {
+    closeButtons[i].addEventListener('click', function() {
+      prayerModal.style.display = 'none';
+      confirmationModal.style.display = 'none';
+    });
+  }
+  
+  // Close confirmation modal
+  closeConfirmationBtn.addEventListener('click', function() {
+    confirmationModal.style.display = 'none';
+  });
+  
+  // Close modals when clicking outside
+  window.addEventListener('click', function(event) {
+    if (event.target === prayerModal) {
+      prayerModal.style.display = 'none';
+    }
+    if (event.target === confirmationModal) {
+      confirmationModal.style.display = 'none';
+    }
+  });
+  
+  // Check for form submission (Google Forms redirects to a thank you page)
+  // This is a workaround since we can't directly detect Google Form submission
+  const checkFormSubmission = setInterval(function() {
+    try {
+      // Check if the iframe URL has changed to the thank you page
+      if (prayerForm.contentWindow.location.href.includes('formResponse')) {
+        prayerModal.style.display = 'none';
+        confirmationModal.style.display = 'block';
+        clearInterval(checkFormSubmission);
+      }
+    } catch (e) {
+      // Cross-origin security error, we can't directly access iframe content
+      // This is expected behavior with Google Forms
+    }
+  }, 1000);
+});
+
+</script>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+  <script src="gallery.js"></script>
+
+
+</body>
+</html>

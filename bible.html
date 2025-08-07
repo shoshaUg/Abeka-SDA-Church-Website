@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bible Explorer - Abeka SDA Church</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ay.css">
+  <link rel="icon" type="png" sizes="32x32" href="abeka.jpg">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+/* Footer Give Button */
+/* Footer Button Base Styles */
+.footer-btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  min-width: 150px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Prayer Request Button */
+.prayer-btn {
+  background-color: #3498db;
+  color: white;
+  border: 2px solid #2980b9;
+}
+
+.prayer-btn:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Give Online Button */
+.give-btn {
+  background-color: #2ecc71;
+  color: white;
+  border: 2px solid #3a5a78;
+}
+
+.give-btn:hover {
+  background-color: #27ae60;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Up Arrow Icon */
+.up-arrow {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.footer-btn:hover .up-arrow {
+  transform: translateY(-3px);
+}
+
+/* Button Container Layout */
+.footer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-btn {
+    padding: 10px 18px;
+    font-size: 14px;
+    min-width: 160px;
+  }
+  
+  .footer-buttons {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .footer-btn {
+    width: 100%;
+    max-width: 150px;
+  }
+  
+  .up-arrow {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer-btn {
+    padding: 6px 13px;
+    font-size: 13px;
+    min-width: 120px;
+  }
+}
+/* Bible Hero Section with Overlay Content */
+.bible-hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+}
+
+.bible-hero-gif {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.bible-hero-gif img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.bible-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 10px;
+  backdrop-filter: blur(2px);
+  margin: 2rem;
+}
+
+.bible-hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.bible-hero p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.9rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+}
+
+.btn-outline:hover {
+  background: white;
+  color: #3A5A78;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .bible-hero {
+    min-height: 60vh;
+  }
+  
+  .bible-hero-content {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .bible-hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .bible-hero p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bible-hero {
+    min-height: 50vh;
+  }
+  
+  .bible-hero-content {
+    padding: 1.2rem;
+    margin: 0.5rem;
+    backdrop-filter: none;
+    background-color: rgba(58, 90, 120, 0.8);
+  }
+  
+  .bible-hero h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-buttons {
+    gap: 1rem;
+  }
+  
+  .btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Adjust scroll position offset */
+@media (min-width: 768px) {
+  :target {
+    scroll-margin-top: 80px; /* Adjust based on your header height */
+  }
+}
+
+@media (max-width: 480px) {
+  :target {
+    scroll-margin-top: 60px; /* Adjust for mobile header */
+  }
+}
+  </style>
+</head>
+<body>
+  <!-- Announcement Marquee -->
+  <div class="marquee">
+    <marquee behavior="scroll" direction="left">
+      🎉 Join us for Sabbath Service at 9:30 this and every Saturday | 🙏 Prayer Meetings every Wednesday | 🌟 Annual Camp Meeting coming soon!
+    </marquee>
+  </div>
+  <!-- Navbar (Same as index.html) -->
+  <nav>
+     <div class="logo">
+    <img src="abeka.jpg" alt="Church Logo" class="logo-image">
+    <span>Abeka SDA Church</span>
+  </div>
+      <ul>
+      <li>
+        <a href="index.html" >
+          <i class="fas fa-home"></i>
+          <span class="nav-text">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="bible.html" class="active">
+          <i class="fas fa-bible"></i>
+          <span class="nav-text">Bible</span>
+        </a>
+      </li>
+      <li>
+        <div class="dropdown">
+        <a href="ay.html">
+          <i class="fas fa-users"></i>
+          <span class="nav-text">Youth Ministry</span>
+        </a>
+        <div class="dropdown-content">
+          <a href="adventurers.html">Adventurers</a>
+          <a href="pathfinders.html">Pathfinders</a>
+          
+          <a href="senior.html">Senior Youth</a>
+          <a href="gallery.html">Gallery</a>
+        </div>
+        </div>
+      </li>
+      <li>
+        <a href="event.html">
+          <i class="fas fa-microphone-alt"></i>
+          <span class="nav-text">Sermon</span>
+        </a>
+      </li>
+            <li>
+        <a href="about.html">
+          <i class="fas fa-info-circle"></i>
+          <span class="nav-text">About</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+<section class="bible-hero">
+  <div class="bible-hero-gif">
+    <img src="https://media.giphy.com/media/aAfKYv1ScWDuM/giphy.gif" alt="Bible pages animation">
+  </div>
+  <div class="bible-hero-content">
+    <h1>Explore God's Word</h1>
+    <p>Discover truth, wisdom, and guidance in Scripture</p>
+    <div class="hero-buttons">
+      <a href="#verse-search" class="btn scroll-link">Search Verses</a>
+      <a href="#popular-verses" class="btn btn-outline">Popular Verses</a>
+    </div>
+  </div>
+</section>
+  
+  <!-- Main Content -->
+  <main class="bible-container">
+    <!-- Motivational Quote Rotator -->
+    <section class="quote-box">
+      <div class="quote-icon">
+        <i class="fas fa-quote-left"></i>
+      </div>
+      <p id="motivational-quote">"Faith is taking the first step even when you don't see the whole staircase."</p>
+      <p id="quote-author" class="quote-author">— Martin Luther King Jr.</p>
+    </section>
+    <div class="container">
+        
+        <!-- Button Row -->
+        <div class="button-row">
+            <button id="prayerRequestBtn" class="action-btn prayer-btn">
+                <i class="fas fa-pray btn-icon"></i> Prayer Request
+            </button>
+            
+            <button id="giveOnlineBtn" class="action-btn give-btn">
+                <i class="fas fa-hand-holding-usd btn-icon"></i> Give Online
+            </button>
+        </div>
+        
+    <!-- Prayer Request Modal -->
+    <div id="prayerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2><i class="fas fa-praying-hands"></i> Prayer Request</h2>
+            <iframe id="prayerForm" src="https://docs.google.com/forms/d/e/1FAIpQLSeb1RpJYBGLV7XDMu33oly7lWFSHIR5muvQrNGHHYIy12WM4g/viewform?embedded=true" ></iframe>
+        </div>
+    </div>
+    
+    <!-- Donation Modal -->
+    <div id="donationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2><i class="fas fa-hand-holding-usd"></i> Give Your Offering</h2>
+            <div class="payment-options">
+                <!-- PayPal Option -->
+                <div class="payment-option">
+                    <h3>PayPal</h3>
+                    <form action="https://www.paypal.com/donate" method="post" target="_blank">
+                        <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL@example.com">
+                        <input type="hidden" name="item_name" value="Church Offering">
+                        <input type="hidden" name="currency_code" value="USD">
+                        <div class="amount-options">
+                            <button type="button" class="amount-btn" data-amount="10">$10</button>
+                            <button type="button" class="amount-btn" data-amount="20">$20</button>
+                            <button type="button" class="amount-btn" data-amount="50">$50</button>
+                            <input type="number" name="amount" id="customAmount" min="1" placeholder="Other amount">
+                        </div>
+                        <button type="submit" class="paypal-btn">
+                            <i class="fab fa-paypal"></i> Give via PayPal
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Credit Card Option -->
+                <div class="payment-option">
+                    <h3>Credit/Debit Card</h3>
+                    <p>We accept all major credit cards. Coming soon!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content" style="text-align: center;">
+            <span class="close">&times;</span>
+            <div style="font-size: 60px; color: #4a89dc; margin-bottom: 20px;">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Thank You!</h2>
+            <p>Your prayer request has been submitted.</p>
+            <p>We'll be praying for you.</p>
+            <button id="closeConfirmationBtn" class="action-btn prayer-btn" style="margin-top: 20px;">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Bible Search Section -->
+    <section id="verse-search" class="bible-search">
+      <h2><i class="fas fa-search"></i> Bible Verse Search</h2>
+      <div class="search-box">
+        <input type="text" id="verse-search" placeholder="e.g., John 3:16">
+        <button onclick="fetchVerse()" class="btn">
+          <i class="fas fa-search"></i> Search
+        </button>
+      </div>
+      <div id="verse-result" class="verse-result"></div>
+    </section>
+
+    <!-- Popular Verses Grid -->
+<section id="popular-verses" class="popular-verses">
+  <h2><i class="fas fa-star"></i> Popular Verses</h2>
+  <div class="verse-controls">
+    <button class="verse-nav prev" onclick="showPrevVerses()"><i class="fas fa-chevron-left"></i></button>
+    <div class="verse-grid">
+      <!-- First Batch of 3 -->
+      <div class="verse-card active" onclick="fetchVerse('Psalm 23:1')">
+        <h3>Psalm 23:1</h3>
+        <p>"The Lord is my shepherd, I lack nothing."</p>
+      </div>
+      <div class="verse-card active" onclick="fetchVerse('Philippians 4:13')">
+        <h3>Philippians 4:13</h3>
+        <p>"I can do all things through Christ who strengthens me."</p>
+      </div>
+      <div class="verse-card active" onclick="fetchVerse('Jeremiah 29:11')">
+        <h3>Jeremiah 29:11</h3>
+        <p>"For I know the plans I have for you, declares the Lord..."</p>
+      </div>
+      
+      <!-- Second Batch of 3 -->
+      <div class="verse-card" onclick="fetchVerse('John 3:16')">
+        <h3>John 3:16</h3>
+        <p>"For God so loved the world that he gave his one and only Son..."</p>
+      </div>
+      <div class="verse-card" onclick="fetchVerse('Proverbs 3:5-6')">
+        <h3>Proverbs 3:5-6</h3>
+        <p>"Trust in the Lord with all your heart..."</p>
+      </div>
+      <div class="verse-card" onclick="fetchVerse('Romans 8:28')">
+        <h3>Romans 8:28</h3>
+        <p>"And we know that in all things God works for the good..."</p>
+      </div>
+      
+      <!-- Third Batch of 3 -->
+      <div class="verse-card" onclick="fetchVerse('Isaiah 40:31')">
+        <h3>Isaiah 40:31</h3>
+        <p>"But those who hope in the Lord will renew their strength..."</p>
+      </div>
+      <div class="verse-card" onclick="fetchVerse('Matthew 11:28')">
+        <h3>Matthew 11:28</h3>
+        <p>"Come to me, all you who are weary and burdened..."</p>
+      </div>
+      <div class="verse-card" onclick="fetchVerse('Joshua 1:9')">
+        <h3>Joshua 1:9</h3>
+        <p>"Be strong and courageous. Do not be afraid..."</p>
+      </div>
+      
+      <!-- Fourth Batch of 3 -->
+      <div class="verse-card" onclick="fetchVerse('Psalm 46:10')">
+        <h3>Psalm 46:10</h3>
+        <p>"Be still, and know that I am God..."</p>
+      </div>
+      <div class="verse-card" onclick="fetchVerse('2 Timothy 1:7')">
+        <h3>2 Timothy 1:7</h3>
+        <p>"For God has not given us a spirit of fear..."</p>
+      </div>
+      <div class="verse-card" onclick="fetchVerse('1 Corinthians 13:4-5')">
+        <h3>1 Corinthians 13:4-5</h3>
+        <p>"Love is patient, love is kind..."</p>
+      </div>
+    </div>
+    <button class="verse-nav next" onclick="showNextVerses()"><i class="fas fa-chevron-right"></i></button>
+  </div>
+  <div class="verse-dots">
+    <span class="dot active" onclick="showVerseBatch(0)"></span>
+    <span class="dot" onclick="showVerseBatch(1)"></span>
+    <span class="dot" onclick="showVerseBatch(2)"></span>
+    <span class="dot" onclick="showVerseBatch(3)"></span>
+  </div>
+</section>
+  </main>
+ <!-- Floating Chat Button -->
+<div class="floating-chat-container">
+  <div class="chat-tooltip">Need help or prayer? Chat with us!</div>
+  <a href="https://wa.me/+233534268869" class="floating-chat-btn whatsapp" target="_blank">
+    <i class="fab fa-whatsapp"> </a></i>
+ 
+
+  <div class="chat-tooltip">Need help or prayer? Chat with us!</div>
+   <a href="https://www.facebook.com/theabekasdachurch" class="floating-chat-btn messenger" target="_blank">
+   <i class="fab fa-facebook-messenger"></i>
+  </a>
+</div>
+
+<!-- Add this section before your footer -->
+<section class="bible-stories-section">
+  <div class="container">
+    <h2><i class="fas fa-bible"></i> Bible Stories for Inspiration</h2>
+    <p class="subtitle">Explore these timeless stories from Scripture</p>
+    
+    <div class="stories-grid">
+      <!-- Story 1 -->
+      <div class="story-card">
+        <img src="royals/noah.jpg" alt="Noah's Ark" class="story-image">
+        <div class="story-content">
+          <h3>Noah's Ark</h3>
+          <p class="story-reference">Genesis 6-9</p>
+          <p class="story-teaser">The story of faith, obedience, and God's covenant through the flood...</p>
+          <a href="https://www.biblegateway.com/passage/?search=Genesis%207&version=NIV" target="_blank" class="story-link">Read Story <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
+      <!-- Story 2 -->
+      <div class="story-card">
+        <img src="royals/david.jpg" alt="David and Goliath" class="story-image">
+        <div class="story-content">
+          <h3>David and Goliath</h3>
+          <p class="story-reference">1 Samuel 17</p>
+          <p class="story-teaser">How a young shepherd defeated a giant through faith in God...</p>
+          <a href="https://www.biblegateway.com/passage/?search=1%20Samuel%2017&version=NIV" target="_blank" class="story-link">Read Story <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
+      <!-- Story 3 -->
+      <div class="story-card">
+        <img src="royals/prodigal.jpg" alt="Prodigal Son" class="story-image">
+        <div class="story-content">
+          <h3>The Prodigal Son</h3>
+          <p class="story-reference">Luke 15:11-32</p>
+          <p class="story-teaser">Jesus' parable about forgiveness and the Father's unconditional love...</p>
+          <a href="https://www.biblegateway.com/passage/?search=Luke%2015%3A11-32&version=ESV" target="_blank" class="story-link">Read Story <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center">
+      <a href="https://bibleforchildren.org/languages/english/stories.php" target="_blank" class="btn btn-primary">View All Bible Stories</a>
+    </div>
+  </div>
+</section>
+
+  <!-- Footer (Same as index.html) -->
+<footer class="modern-footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Connect With Us</h3>
+      <div class="social-handles">
+        <a href="https://www.facebook.com/theabekasdachurch" target="_blank" class="social-icon fb">
+          <i class="fab fa-facebook-f"></i>
+          <span class="tooltip">Facebook</span>
+        </a>
+        <a href="https://www.instagram.com/theabekasdachurch" target="_blank" class="social-icon ig">
+          <i class="fab fa-instagram"></i>
+          <span class="tooltip">Instagram</span>
+        </a>
+        <a href="https://www.youtube.com/royalspfclub" target="_blank" class="social-icon yt">
+          <i class="fab fa-youtube"></i>
+          <span class="tooltip">YouTube</span>
+        </a>
+        <a href="https://www.tiktok.com/@abeka_sda_church" target="_blank" class="social-icon tt">
+          <i class="fab fa-tiktok"></i>
+          <span class="tooltip">TikTok</span>
+        </a>
+        <a href="https://www.wa.me/+233534268869" target="_blank" class="social-icon wa">
+          <i class="fab fa-whatsapp"></i>
+          <span class="tooltip">WhatsApp</span>
+        </a>
+      </div>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="ay.html">Ministries</a></li>
+        <li><a href="event.html">Sermons</a></li>
+        <div class="footer-buttons">
+      <li><button id="footerPrayerBtn" class="footer-btn prayer-btn">
+        <span><i class="fas fa-pray"></i>Prayer Request</span>
+        <svg class="up-arrow" viewBox="0 0 24 24" width="20" height="20">
+          <path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+      </button></li>
+      
+      <li><button id="footerGiveBtn" class="footer-btn give-btn">
+        <span><i class="fas fa-hand-holding-usd"></i>Give Online</span>
+        <svg class="up-arrow" viewBox="0 0 24 24" width="20" height="20">
+          <path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+      </button></li>
+       
+      </ul>
+    </div>
+    
+    <div class="footer-section">
+      <h3>Contact Info</h3>
+      <p><i class="fas fa-map-marker-alt"></i> JQ24+JQG, Abeka-Lapaz<br>Adjacent Rene School, Accra</p>
+      <p><i class="fas fa-phone"></i> (+233) 53-426-8869</p>
+      <p><i class="fas fa-envelope"></i> info@abekasdachurch.com</p>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <p>&copy; <span id="current-year"></span> Abeka SDA Church. All Rights Reserved.</p>
+  </div>
+</footer>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get elements
+            const prayerBtn = document.getElementById('prayerRequestBtn');
+            const giveBtn = document.getElementById('giveOnlineBtn');
+            const prayerModal = document.getElementById('prayerModal');
+            const donationModal = document.getElementById('donationModal');
+            const confirmationModal = document.getElementById('confirmationModal');
+            const closeButtons = document.getElementsByClassName('close');
+            const closeConfirmationBtn = document.getElementById('closeConfirmationBtn');
+            const amountBtns = document.querySelectorAll('.amount-btn');
+            const customAmount = document.getElementById('customAmount');
+            
+            // Open modals
+            prayerBtn.addEventListener('click', function() {
+                prayerModal.style.display = 'block';
+            });
+            
+            giveBtn.addEventListener('click', function() {
+                donationModal.style.display = 'block';
+            });
+            
+            // Close modals when clicking X
+            for (let i = 0; i < closeButtons.length; i++) {
+                closeButtons[i].addEventListener('click', function() {
+                    prayerModal.style.display = 'none';
+                    donationModal.style.display = 'none';
+                    confirmationModal.style.display = 'none';
+                });
+            }
+            
+            // Close confirmation modal
+            closeConfirmationBtn.addEventListener('click', function() {
+                confirmationModal.style.display = 'none';
+            });
+            
+            // Close modals when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === prayerModal) {
+                    prayerModal.style.display = 'none';
+                }
+                if (event.target === donationModal) {
+                    donationModal.style.display = 'none';
+                }
+                if (event.target === confirmationModal) {
+                    confirmationModal.style.display = 'none';
+                }
+            });
+            
+            // Amount selection for donations
+            amountBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    amountBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    customAmount.value = this.dataset.amount;
+                });
+            });
+            
+            // Custom amount handling
+            customAmount.addEventListener('input', function() {
+                amountBtns.forEach(b => b.classList.remove('active'));
+            });
+            
+            // Check for form submission (Google Forms)
+            const checkFormSubmission = setInterval(function() {
+                try {
+                    if (document.getElementById('prayerForm').contentWindow.location.href.includes('formResponse')) {
+                        prayerModal.style.display = 'none';
+                        confirmationModal.style.display = 'block';
+                        clearInterval(checkFormSubmission);
+                    }
+                } catch (e) {
+                    // Cross-origin security error expected
+                }
+            }, 1000);
+        });
+
+  
+document.addEventListener('DOMContentLoaded', function() {
+  // Smooth scroll for all scroll links
+  document.querySelectorAll('.scroll-link').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop - 20, // Adjust offset as needed
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+});
+</script>
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>

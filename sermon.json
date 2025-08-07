@@ -1,0 +1,20 @@
+[
+  {
+    "title": "The Power of Prayer",
+    "url": "/blog/power-of-prayer",
+    "date": "2023-06-20",
+    "icon": "fas fa-pray"
+  },
+  {
+    "title": "Sunday Service Recap",
+    "url": "/blog/service-recap",
+    "date": "2023-06-18",
+    "icon": "fas fa-church"
+  },
+  {
+    "title": "Bible Study Notes",
+    "url": "/blog/bible-study",
+    "date": "2023-06-15",
+    "icon": "fas fa-bible"
+  }
+]

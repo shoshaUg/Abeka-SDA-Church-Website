@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventurer Club</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            align-items: flex-start;
+        }
+
+        .image-gallery {
+            flex: 0 0 35%;
+            min-width: 250px;
+            position: relative;
+            margin-right: 30px;
+            margin-bottom: 20px;
+        }
+
+        .image-gallery img {
+            position: absolute;
+            max-width: 80%;
+            height: auto;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .image-gallery img.active {
+            opacity: 1;
+        }
+
+        .content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #34495e;
+            margin-bottom: 15px;
+        }
+
+        .additional-content {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .image-gallery {
+                flex: 0 0 100%;
+                margin-right: 0;
+                margin-bottom: 30px;
+                height: 200px; /* Smaller height on mobile */
+            }
+            
+            .image-gallery img {
+                max-height: 200px;
+                width: auto;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .image-gallery {
+                height: 150px; /* Even smaller on very small screens */
+            }
+            
+            .image-gallery img {
+                max-height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-gallery">
+            <!-- Replace these with your actual image paths -->
+            <img src="royals/Adventurer_Logo.png" alt="Youth activity 1" class="active" style="border-radius: 50%;"> <!-- Example round image -->
+            <img src="royals/add-flag.jpg" alt="Youth activity 2" style="border-radius: 0;"> <!-- Example rectangular image -->
+            <img src="royals/ad.png" alt="Youth activity 3" style="border-radius: 10px;"> <!-- Example custom shape -->
+        </div>
+
+        <div class="content">
+            <h1>ADVENTURER CLUB</h1>
+            <p>More than one million kids around the world have discovered one of the most fun clubs ever created for them. The Adventurer Club is designed to strengthen parent-child relationships for kids ages 4-9 by providing specialized weekly activities tuned into the psychological needs of this age group while simultaneously giving parents opportunities for learning parenting skills and enjoying special activities with their children.</p>
+        </div>
+
+        <div class="additional-content">
+            <h2>LEADERSHIP</h2>
+            <p>The volunteer leadership attend special training sessions to understand how to maximize the focus of the Adventurer Club in strengthening the parent-child bonds and enable both parents and children to understand their relationship to God.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.image-gallery img');
+            let currentIndex = 0;
+            
+            function rotateImages() {
+                // Hide current image
+                images[currentIndex].classList.remove('active');
+                
+                // Move to next image
+                currentIndex = (currentIndex + 1) % images.length;
+                
+                // Show next image
+                images[currentIndex].classList.add('active');
+            }
+            
+            // Rotate images every 10 seconds
+            setInterval(rotateImages, 10000);
+        });
+    </script>
+</body>
+</html>
