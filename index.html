@@ -153,6 +153,26 @@
 html {
   scroll-behavior: smooth;
 }
+.typewriter {
+  font-family: monospace;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.typewriter::after {
+  content: "|";
+  position: absolute;
+  animation: blink 1s step-end infinite;
+  right: -10px;
+}
+
+@keyframes blink {
+  from, to { opacity: 0 }
+  50% { opacity: 1 }
+}
 </style>
 </head>
 <body>
@@ -245,7 +265,8 @@ html {
   <!-- Hero Section with Date/Time -->
   <section class="hero">
     <div class="hero-content">
-      <h1 style="color: antiquewhite;">Welcome to Abeka SDA Church</h1>
+      <h1 class="typewriter" data-text="Welcome to Abeka SDA Church" style="color: antiquewhite;"></h1>
+      
       <p>Where faith, hope, and love come together</p>
       <div class="datetime">
         <div id="current-date"><i class="far fa-calendar-alt"></i> Loading date...</div>
@@ -665,15 +686,52 @@ html {
 </footer>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const element = document.querySelector('.typewriter');
+  const text = element.getAttribute('data-text');
+  let isDeleting = false;
+  let speed = 150; // Typing speed (ms per character)
+  let timer;
+  
+  function typeWriter() {
+    const currentText = element.textContent;
+    const targetText = text;
+    
+    if (!isDeleting && currentText === targetText) {
+      // Pause at full text
+      isDeleting = true;
+      timer = setTimeout(typeWriter, 20000); // 20-second pause
+    } else if (isDeleting && currentText === '') {
+      // Start typing again
+      isDeleting = false;
+      timer = setTimeout(typeWriter, speed);
+    } else {
+      // Typing/erasing
+      element.textContent = isDeleting 
+        ? targetText.substring(0, currentText.length - 1)
+        : targetText.substring(0, currentText.length + 1);
+      
+      timer = setTimeout(typeWriter, isDeleting ? speed/2 : speed);
+    }
+  }
+  
+  // Start animation
+  timer = setTimeout(typeWriter, speed);
+  
+  // Cleanup on page leave
+  window.addEventListener('beforeunload', () => {
+    clearTimeout(timer);
+  });
+});
 // Set the date we're counting down to (next Saturday 10:30 AM)
 function getNextServiceDate() {
   const now = new Date();
-  const day = now.getDay(); // 0 = Sunday, 6 = Saturday
+  const day = now.getDay(6); // 0 = Sunday, 6 = Saturday
   const hour = now.getHours();
   const minutes = now.getMinutes();
   
   // If it's Saturday before 10:30 AM, countdown to today's service
-  if (day === 6 && (hour < 10 || (hour === 10 && minutes < 30))) {
+  if (day === 6 && (hour < 10 || (hour === 9 && minutes < 30))) {
     const serviceDate = new Date();
     serviceDate.setHours(9, 30, 0, 0);
     return serviceDate;

@@ -5,116 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adventurer Club</title>
     <style>
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            align-items: flex-start;
-        }
+/* Base Styles */
+.ministries-section {
+  padding: 20px 0;
+  background: #f9f9f9;
+  overflow: hidden;
+}
 
-        .image-gallery {
-            flex: 0 0 35%;
-            min-width: 250px;
-            position: relative;
-            margin-right: 30px;
-            margin-bottom: 20px;
-        }
+.ministries-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
 
-        .image-gallery img {
-            position: absolute;
-            max-width: 80%;
-            height: auto;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
+.section-title {
+  font-size: 12px;
+  color: #555;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 0 10px;
+}
 
-        .image-gallery img.active {
-            opacity: 1;
-        }
+/* Marquee Styles */
+.marquee-container {
+  flex-grow: 1;
+  overflow: hidden;
+  position: relative;
+}
 
-        .content {
-            flex: 1;
-            min-width: 300px;
-        }
+.marquee {
+  display: flex;
+  gap: 30px;
+  width: max-content;
+  animation: scroll 20s linear infinite;
+}
 
-        h1 {
-            font-size: 2.5rem;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            word-wrap: break-word;
-        }
+.ministry-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
 
-        h2 {
-            font-size: 1.8rem;
-            color: #3498db;
-            margin-bottom: 15px;
-        }
+.ministry-item img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
 
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #34495e;
-            margin-bottom: 15px;
-        }
+.ministry-item span {
+  font-size: 11px;
+  color: #666;
+  white-space: nowrap;
+}
 
-        .additional-content {
-            width: 100%;
-            margin-top: 30px;
-        }
+/* Marquee Animation */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Scrolls half the content length */
+}
 
-        @media (max-width: 768px) {
-            .image-gallery {
-                flex: 0 0 100%;
-                margin-right: 0;
-                margin-bottom: 30px;
-                height: 200px; /* Smaller height on mobile */
-            }
-            
-            .image-gallery img {
-                max-height: 200px;
-                width: auto;
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .image-gallery {
-                height: 150px; /* Even smaller on very small screens */
-            }
-            
-            .image-gallery img {
-                max-height: 150px;
-            }
-        }
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .ministries-header {
+    gap: 10px;
+  }
+  .marquee {
+    gap: 20px;
+    animation-duration: 15s;
+  }
+  .ministry-item img {
+    width: 25px;
+    height: 25px;
+  }
+}
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="image-gallery">
-            <!-- Replace these with your actual image paths -->
-            <img src="royals/Adventurer_Logo.png" alt="Youth activity 1" class="active" style="border-radius: 50%;"> <!-- Example round image -->
-            <img src="royals/add-flag.jpg" alt="Youth activity 2" style="border-radius: 0;"> <!-- Example rectangular image -->
-            <img src="royals/ad.png" alt="Youth activity 3" style="border-radius: 10px;"> <!-- Example custom shape -->
-        </div>
+<section class="about-us">
+  <div class="intro">
+    <h2>Welcome to [Church Name]</h2>
+    <p>A short warm welcome...</p>
+  </div>
 
-        <div class="content">
-            <h1>ADVENTURER CLUB</h1>
-            <p>More than one million kids around the world have discovered one of the most fun clubs ever created for them. The Adventurer Club is designed to strengthen parent-child relationships for kids ages 4-9 by providing specialized weekly activities tuned into the psychological needs of this age group while simultaneously giving parents opportunities for learning parenting skills and enjoying special activities with their children.</p>
-        </div>
+  <div class="mission-vision">
+    <h3>Our Mission</h3>
+    <p>...</p>
+    <h3>Our Vision</h3>
+    <p>...</p>
+  </div>
 
-        <div class="additional-content">
-            <h2>LEADERSHIP</h2>
-            <p>The volunteer leadership attend special training sessions to understand how to maximize the focus of the Adventurer Club in strengthening the parent-child bonds and enable both parents and children to understand their relationship to God.</p>
-        </div>
-    </div>
+  <div class="beliefs">
+    <h3>What We Believe</h3>
+    <ul>
+      <li>We believe in God the Father, Son, and Holy Spirit...</li>
+      <!-- More -->
+    </ul>
+  </div>
+
+  <div class="history">
+    <h3>Our Story</h3>
+    <p>Founded in 1989 by Pastor...</p>
+  </div>
+
+  <div class="leadership">
+    <h3>Meet Our Leaders</h3>
+    <!-- Use cards or grid with image, name, and title -->
+  </div>
+
+  <div class="ministries-preview">
+    <h3>Our Ministries</h3>
+    <p>Youth, Choir, Children, Evangelism, Media, Ushering...</p>
+  </div>
+
+  <div class="visit-us">
+    <h3>Service Times</h3>
+    <p>Sunday – 8am & 10:30am</p>
+    <p>Wednesday – Midweek 6pm</p>
+  </div>
+
+  <div class="get-involved">
+    <h3>Get Involved</h3>
+    <a href="/join-us" class="btn">Join a Ministry</a>
+    <a href="/contact" class="btn">Contact Us</a>
+  </div>
+</section>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

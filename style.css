@@ -1572,7 +1572,7 @@ footer {
         /* Prayer Form Styles */
         #prayerForm {
             width: 100%;
-            height: 400px;
+            height: 450px;
             border: none;
         }
 
@@ -1661,7 +1661,7 @@ footer {
             }
             
             #prayerForm {
-                height: 450px;
+                height: 380px;
             }
         }
 
@@ -1680,4 +1680,8 @@ footer {
                 font-size: 12px;
                 margin-right: 4px;
             }
+            #prayerForm {
+                height: 200px;
+            }
         }
+        
