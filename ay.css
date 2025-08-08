@@ -1310,7 +1310,7 @@ audio::-webkit-media-controls {
 /* Marquee Animation */
 @keyframes scroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); } /* Scrolls half the content length */
+  100% { transform: translateX(-100%); } 
 }
 
 /* Mobile Breakpoints */
