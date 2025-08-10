@@ -280,7 +280,7 @@
 <!-- Countdown and Live Section -->
 <section class="live-event-section">
   <div class="countdown-container">
-    <h3>Next Live Service Starts In:</h3>
+    <h3 id="countdown-message">Next Live Service Starts In:</h3>
     <div class="countdown-timer">
       <div class="time-block">
         <span id="days">00</span>
@@ -304,7 +304,7 @@
   <div class="live-stream-placeholder">
     <div class="placeholder-message">
       <i class="fas fa-video"></i>
-      <p>Our live stream will appear here when the service begins</p>
+      <p id="placeholder-text">Our live stream will appear here when the service begins</p>
     </div>
     <div class="facebook-live-embed" id="facebookLiveEmbed" style="display: none;">
       <!-- Facebook Live Embed will be inserted here by JavaScript -->
@@ -755,58 +755,118 @@
   });
 });
 
-// Countdown Timer and Live Stream Implementation
+
 document.addEventListener('DOMContentLoaded', function() {
-  // Set your target date and time (YYYY, MM-1, DD, HH, MM, SS)
-  const targetDate = new Date(2025, 7, 9, 10, 30, 0); // December 25, 2023 at 10:00 AM
-  
-  // Facebook Live Video URL (replace with your actual live video URL)
-  const facebookLiveUrl = "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FYourPageName%2Fvideos%2F1234567890%2F&show_text=false";
-  
-  // Get DOM elements
+  // DOM Elements
   const daysElement = document.getElementById('days');
   const hoursElement = document.getElementById('hours');
   const minutesElement = document.getElementById('minutes');
   const secondsElement = document.getElementById('seconds');
   const placeholder = document.querySelector('.placeholder-message');
+  const placeholderText = document.getElementById('placeholder-text');
   const facebookEmbed = document.getElementById('facebookLiveEmbed');
+  const countdownMessage = document.getElementById('countdown-message');
   
-  // Update countdown every second
-  const countdown = setInterval(function() {
-    const now = new Date().getTime();
+  // Church service times (Saturday 11AM-1PM)
+  const SERVICE_START_TIME = 11; // 11 AM
+  const SERVICE_END_TIME = 13;   // 1 PM
+  const SERVICE_DAY = 6;         // 6 = Saturday
+  
+  // Facebook Live Video URL
+  const facebookLiveUrl = "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FYourPageName%2Fvideos%2F1234567890%2F&show_text=false";
+  
+  let countdownInterval;
+  let liveNotificationShown = false;
+  
+  // Initialize the countdown
+  initCountdown();
+  
+  function initCountdown() {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentDay = now.getDay();
+    
+    // Check if we're currently in a live service window (Saturday 11AM-1PM)
+    if (currentDay === SERVICE_DAY && currentHour >= SERVICE_START_TIME && currentHour < SERVICE_END_TIME) {
+      showLiveStream();
+      showLiveNotification();
+      // Schedule next countdown for when service ends
+      const endTime = new Date();
+      endTime.setHours(SERVICE_END_TIME, 0, 0, 0);
+      setTimeout(initCountdown, endTime - now);
+    } else {
+      // Reset notification flag when not in live window
+      liveNotificationShown = false;
+      // Calculate next Saturday's service start time
+      const nextServiceDate = getNextServiceDate();
+      startCountdown(nextServiceDate);
+    }
+  }
+  
+  function getNextServiceDate() {
+    const now = new Date();
+    const nextSaturday = new Date(now);
+    
+    // Calculate days until next Saturday (6 = Saturday)
+    let daysUntilSaturday = SERVICE_DAY - now.getDay();
+    if (daysUntilSaturday <= 0) daysUntilSaturday += 7;
+    
+    // Set to next Saturday at SERVICE_START_TIME
+    nextSaturday.setDate(now.getDate() + daysUntilSaturday);
+    nextSaturday.setHours(SERVICE_START_TIME, 0, 0, 0);
+    
+    return nextSaturday;
+  }
+  
+  function startCountdown(targetDate) {
+    if (countdownInterval) clearInterval(countdownInterval);
+    
+    // Update UI for countdown state
+    placeholder.style.display = 'flex';
+    facebookEmbed.style.display = 'none';
+    countdownMessage.textContent = "Next Live Service Starts In:";
+    placeholderText.textContent = "Our live stream will appear here when the service begins";
+    
+    // Start countdown
+    countdownInterval = setInterval(function() {
+      updateCountdown(targetDate);
+    }, 1000);
+    
+    updateCountdown(targetDate);
+  }
+  
+  function updateCountdown(targetDate) {
+    const now = new Date();
     const distance = targetDate - now;
     
-    // If countdown is over
     if (distance < 0) {
-      clearInterval(countdown);
+      clearInterval(countdownInterval);
       showLiveStream();
+      showLiveNotification();
+      
+      // Schedule next countdown for after service ends
+      const endTime = new Date(targetDate);
+      endTime.setHours(SERVICE_END_TIME);
+      setTimeout(initCountdown, endTime - now);
       return;
     }
     
-    // Calculate time units
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
-    // Display results
     daysElement.textContent = padZero(days);
     hoursElement.textContent = padZero(hours);
     minutesElement.textContent = padZero(minutes);
     secondsElement.textContent = padZero(seconds);
-  }, 1000);
-  
-  // Helper function to pad numbers with leading zero
-  function padZero(number) {
-    return number < 10 ? `0${number}` : number;
   }
   
-  // Function to show live stream
   function showLiveStream() {
-    // Hide placeholder
     placeholder.style.display = 'none';
+    facebookEmbed.style.display = 'block';
+    countdownMessage.textContent = "Live Now: Divine Service";
     
-    // Create Facebook embed iframe
     facebookEmbed.innerHTML = `
       <iframe src="${facebookLiveUrl}" 
               width="100%" 
@@ -819,17 +879,42 @@ document.addEventListener('DOMContentLoaded', function() {
               allowFullScreen="true">
       </iframe>
     `;
-    
-    // Show the embed
-    facebookEmbed.style.display = 'block';
-    
-    // Optional: Scroll to the live stream
-    facebookEmbed.scrollIntoView({ behavior: 'smooth' });
   }
   
-  // Optional: Check if we should show live stream immediately if target time has passed
-  if (new Date() > targetDate) {
-    showLiveStream();
+  function showLiveNotification() {
+    // Only show once per live session
+    if (liveNotificationShown) return;
+    
+    liveNotificationShown = true;
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = 'live-notification';
+    notification.innerHTML = `
+      <div class="notification-content">
+        <span class="close-notification">&times;</span>
+        <p>📢 <strong>We're live now!</strong> Join our Saturday service.</p>
+        <a href="#live-stream" class="notification-btn">Watch Now</a>
+      </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Close button functionality
+    notification.querySelector('.close-notification').addEventListener('click', function() {
+      notification.style.animation = 'fadeOut 0.5s forwards';
+      setTimeout(() => notification.remove(), 500);
+    });
+    
+    // Auto-hide after 10 seconds
+    setTimeout(() => {
+      notification.style.animation = 'fadeOut 0.5s forwards';
+      setTimeout(() => notification.remove(), 500);
+    }, 10000);
+  }
+  
+  function padZero(number) {
+    return number < 10 ? `0${number}` : number;
   }
 });
 </script>

@@ -64,7 +64,7 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
+  height: 80%;
   background-color: rgba(0,0,0,0.7);
 }
 
@@ -179,11 +179,7 @@ html {
     transform: scale(0.9); /* Slight shrink if needed */
   }
 }
-  body, html {
-    height: 100%;
-    overflow: hidden; /* Prevent scroll while loading */
-    
-  }
+ 
 
   /* Preloader container */
   #preloader {
@@ -230,11 +226,7 @@ html {
     100% { opacity: 1; transform: scale(1); }
   }
 
-  /* Main Content */
-  #content {
-    display: none;
-    padding: 20px;
-  }
+
 
   /* Media Queries for responsiveness */
   @media (max-width: 768px) {
@@ -264,8 +256,8 @@ html {
   <img src="abeka.jpg" alt="Church Logo">
   <div class="loader"></div>
 </div>
-
-  <div class="service-countdown">
+<div id="content">
+ <div class="service-countdown">
   <div class="countdown-container">
     <div class="countdown-header">
       <i class="fas fa-church"></i>
@@ -293,7 +285,7 @@ html {
       <p>Next: <strong>Divine Service</strong> - Saturday, 09:30 AM</p>
     </div>
   </div>
-</div>
+ </div>
   <!-- Announcement Marquee -->
   <div class="marquee">
     <marquee behavior="scroll" direction="left">
@@ -351,7 +343,7 @@ html {
     </ul>
   </nav>
 
-  <!-- Hero Section with Date/Time -->
+ <!-- Hero Section with Date/Time -->
   <section class="hero">
     <div class="hero-content">
       <h1 class="typewriter" data-text="Welcome to Abeka SDA Church" style="color: antiquewhite;"></h1>
@@ -366,8 +358,8 @@ html {
     </div>
   </section>
 
-<!-- Donation Modal have to put the right link -->
-<div id="donationModal" class="modal">
+ <!-- Donation Modal have to put the right link -->
+ <div id="donationModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2>Give Your Offering</h2>
@@ -396,10 +388,10 @@ html {
       </div>
     </div>
   </div>
-</div>
+ </div>
 
-<!-- Features Section -->
-<section class="features">
+ <!-- Features Section -->
+ <section class="features">
   <div class="feature-card">
     <section class="daily-verse-section">
     <div class="verse-container">
@@ -433,32 +425,37 @@ html {
     <h3>Prayer Request</h3>
     <p>Share your prayer needs with us</p>
     <p>We will pray for you and keep your request confidential.</p>
-    
-    <button id="prayerRequestBtn" class="prayer-btn">Submit Prayer Request</button>
+     <button id="prayerRequestBtn" class="prayer-btn"> Prayer Request</button>
   </div>
 
-<!-- Prayer Request Modal -->
-<div id="prayerModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <iframe id="prayerForm" src="" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
-  </div>
-</div>
+ <!-- Prayer Request Modal -->
+    <div id="prayerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2><i class="fas fa-praying-hands"></i> Prayer Request</h2>
+            <iframe id="prayerForm" src="https://docs.google.com/forms/d/e/1FAIpQLSeb1RpJYBGLV7XDMu33oly7lWFSHIR5muvQrNGHHYIy12WM4g/viewform?embedded=true" ></iframe>
+        </div>
+    </div>
 
-<!-- Submission Confirmation Modal -->
-<div id="confirmationModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h3>Thank You!</h3>
-    <p>Your prayer request has been submitted.</p>
-    <p>We'll be praying for you.</p>
-    <button id="closeConfirmationBtn" class="confirmation-btn">Close</button>
-  </div>
-</div>
-</section>
+ <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content" style="text-align: center;">
+            <span class="close">&times;</span>
+            <div style="font-size: 60px; color: #4a89dc; margin-bottom: 20px;">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Thank You!</h2>
+            <p>Your prayer request has been submitted.</p>
+            <p>We'll be praying for you.</p>
+            <button id="closeConfirmationBtn" class="action-btn prayer-btn" style="margin-top: 20px;">
+                Close
+            </button>
+        </div>
+    </div>
+ </section>
 
   
-<div class="events-container">
+ <div class="events-container">
   <!-- First Event -->
   <div class="event-card">
     <img src="worship.jpg" alt="Divine Service" class="event-image" >
@@ -542,9 +539,9 @@ html {
       </div>
     </div>
   </div>
-</div>
+ </div>
 
-<section class="testimonials-carousel">
+ <section class="testimonials-carousel">
   <h2 class="section-title">Member Testimonies</h2>
   <!-- First row scrolling left -->
   <div class="carousel-wrapper top-row">
@@ -633,9 +630,9 @@ html {
     </div>
     <div class="gradient-edge right-edge"></div>
   </div>
-</section>
-<!-- Floating Chat Button -->
-<div class="floating-chat-container">
+ </section>
+ <!-- Floating Chat Button -->
+ <div class="floating-chat-container">
   <div class="chat-tooltip">Need help or prayer? Chat with us!</div>
   <a href="https://wa.me/+233534268869" class="floating-chat-btn whatsapp" target="_blank">
     <i class="fab fa-whatsapp"> </a></i>
@@ -645,9 +642,9 @@ html {
    <a href="https://www.facebook.com/theabekasdachurch" class="floating-chat-btn messenger" target="_blank">
    <i class="fab fa-facebook-messenger"></i>
   </a>
-</div>
+ </div>
 
-<section class="new-here-section">
+ <section class="new-here-section">
   <div class="container">
     <div class="welcome-header">
       <h2><i class="fas fa-hands-helping"></i> New Here? Welcome to Abeka SDA Church!</h2>
@@ -697,10 +694,10 @@ html {
 
     
   </div>
-</section>
+ </section>
 
   <!-- Footer with Contact & Links -->
-<footer class="modern-footer">
+ <footer class="modern-footer">
   <div class="footer-content">
     <div class="footer-section">
       <h3>Connect With Us</h3>
@@ -729,20 +726,20 @@ html {
       <section class="church-map-section">
   <h2>Visit Us</h2>
  <div class="map-container">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.7658440588652!2d-0.24522355677653027!3d5.60156989600896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf998ca7bfb8bb%3A0x5a2562a371bc9fac!2sAbeka%20SDA%20Church!5e0!3m2!1sen!2sgh!4v1754309034451!5m2!1sen!2sgh" 
+ <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.7658440588652!2d-0.24522355677653027!3d5.60156989600896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf998ca7bfb8bb%3A0x5a2562a371bc9fac!2sAbeka%20SDA%20Church!5e0!3m2!1sen!2sgh!4v1754309034451!5m2!1sen!2sgh" 
   width="350" 
   height="150" style="border:0;" 
   allowfullscreen="" 
   loading="lazy" 
   referrerpolicy="no-referrer-when-downgrade">
-</iframe>
+ </iframe>
   <div class="map-actions">
     <a href="https://www.google.com/maps/dir//5.6037,-0.2270" target="_blank" class="map-btn">
       <i class="fas fa-directions"></i> Get Directions
     </a>
   </div>
-</div>
-</section>
+ </div>
+ </section>
     </div>
     
     <div class="footer-section">
@@ -772,23 +769,9 @@ html {
     </div>
     <p>&copy; <span id="current-year"></span> Abeka SDA Church. All Rights Reserved.</p>
   </div>
-</footer>
-
+ </footer>
+</div>
 <script>
-  window.addEventListener("load", function(){
-    let preloader = document.getElementById("preloader");
-    let content = document.getElementById("content");
-
-    // Start fade-out
-    preloader.style.opacity = "0";
-
-    // Wait for transition to complete before removing preloader
-    setTimeout(function(){
-      preloader.style.display = "none";
-      content.style.display = "block";
-      document.body.style.overflow = "auto"; // Enable scrolling again
-    }, 1000); // Matches the CSS transition duration
-  });
 
 document.addEventListener('DOMContentLoaded', function() {
   const element = document.querySelector('.typewriter');
@@ -827,53 +810,158 @@ document.addEventListener('DOMContentLoaded', function() {
     clearTimeout(timer);
   });
 });
-// Set the date we're counting down to (next Saturday 10:30 AM)
-function getNextServiceDate() {
+  
+  window.addEventListener("load", function(){
+    let preloader = document.getElementById("preloader");
+    let content = document.getElementById("content");
+
+    // Start fade-out
+    preloader.style.opacity = "0";
+
+    // Wait for transition to complete before removing preloader
+    setTimeout(function(){
+      preloader.style.display = "none";
+      content.style.display = "block";
+      document.body.style.overflow = "auto"; // Enable scrolling again
+    }, 1000); // Matches the CSS transition duration
+  });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get elements
+            const prayerBtn = document.getElementById('prayerRequestBtn');
+            const giveBtn = document.getElementById('giveOnlineBtn');
+            const prayerModal = document.getElementById('prayerModal');
+            const donationModal = document.getElementById('donationModal');
+            const confirmationModal = document.getElementById('confirmationModal');
+            const closeButtons = document.getElementsByClassName('close');
+            const closeConfirmationBtn = document.getElementById('closeConfirmationBtn');
+            const amountBtns = document.querySelectorAll('.amount-btn');
+            const customAmount = document.getElementById('customAmount');
+            
+            // Open modals
+            prayerBtn.addEventListener('click', function() {
+                prayerModal.style.display = 'block';
+            });
+            
+            giveBtn.addEventListener('click', function() {
+                donationModal.style.display = 'block';
+            });
+            
+            // Close modals when clicking X
+            for (let i = 0; i < closeButtons.length; i++) {
+                closeButtons[i].addEventListener('click', function() {
+                    prayerModal.style.display = 'none';
+                    donationModal.style.display = 'none';
+                    confirmationModal.style.display = 'none';
+                });
+            }
+            
+            // Close confirmation modal
+            closeConfirmationBtn.addEventListener('click', function() {
+                confirmationModal.style.display = 'none';
+            });
+            
+            // Close modals when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target === prayerModal) {
+                    prayerModal.style.display = 'none';
+                }
+                if (event.target === donationModal) {
+                    donationModal.style.display = 'none';
+                }
+                if (event.target === confirmationModal) {
+                    confirmationModal.style.display = 'none';
+                }
+            });
+            
+            // Amount selection for donations
+            amountBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    amountBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    customAmount.value = this.dataset.amount;
+                });
+            });
+            
+            // Custom amount handling
+            customAmount.addEventListener('input', function() {
+                amountBtns.forEach(b => b.classList.remove('active'));
+            });
+            
+            // Check for form submission (Google Forms)
+            const checkFormSubmission = setInterval(function() {
+                try {
+                    if (document.getElementById('prayerForm').contentWindow.location.href.includes('formResponse')) {
+                        prayerModal.style.display = 'none';
+                        confirmationModal.style.display = 'block';
+                        clearInterval(checkFormSubmission);
+                    }
+                } catch (e) {
+                    // Cross-origin security error expected
+                }
+            }, 1000);
+        });
+  
+
+function updateCountdown() {
   const now = new Date();
-  const day = now.getDay(6); // 0 = Sunday, 6 = Saturday
-  const hour = now.getHours();
-  const minutes = now.getMinutes();
+  let nextService = new Date();
   
-  // If it's Saturday before 10:30 AM, countdown to today's service
-  if (day === 6 && (hour < 10 || (hour === 9 && minutes < 30))) {
-    const serviceDate = new Date();
-    serviceDate.setHours(9, 30, 0, 0);
-    return serviceDate;
+  // Set target time (Saturday 9:30 AM)
+  nextService.setHours(9, 30, 0, 0);
+  
+  // Adjust date based on current time
+  if (now.getDay() === 6) { // If today is Saturday
+    if (now < nextService) {
+      // Before service time - use today's date
+    } 
+    else if (now.getHours() >= 18) {
+      // After 6 PM - set to next Saturday
+      nextService.setDate(now.getDate() + 7);
+    }
+    else {
+      // During service hours (9:30 AM - 6 PM)
+      document.getElementById('countdown-timer').style.display = 'none';
+      document.getElementById('welcome-message').style.display = 'block';
+      document.getElementById('welcome-message').innerHTML = `
+        <h3>Welcome to Sabbath Service!</h3>
+        <p>Service has started! Join us now!</p>
+        <p>We're glad you're here with us today</p>
+      `;
+      return;
+    }
+  } 
+  else {
+    // Not Saturday - find next Saturday
+    const daysUntilSaturday = (6 - now.getDay() + 7) % 7;
+    nextService.setDate(now.getDate() + daysUntilSaturday);
   }
+
+  const diff = nextService - now;
   
-  // Otherwise countdown to next Saturday
-  const daysUntilSaturday = (6 - day + 7) % 7;
-  const nextSaturday = new Date();
-  nextSaturday.setDate(now.getDate() + daysUntilSaturday);
-  nextSaturday.setHours(9, 30, 0, 0);
-  return nextSaturday;
+  // Calculate time units
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  
+  // Update display
+  document.getElementById('days').textContent = days.toString().padStart(2, '0');
+  document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+  document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+  document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+  
+  // Ensure countdown is visible
+  document.getElementById('countdown-timer').style.display = 'block';
+  document.getElementById('welcome-message').style.display = 'none';
 }
 
-// Update the countdown every 1 second
-const countdown = setInterval(function() {
-  const countDownDate = getNextServiceDate().getTime();
-  const now = new Date().getTime();
-  const distance = countDownDate - now;
-  
-  // Time calculations
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
-  // Display the result
-  document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
-  document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-  document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-  document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-  
-  // If the countdown is finished
-  if (distance < 0) {
-    clearInterval(countdown);
-    document.querySelector(".countdown-timer").innerHTML = 
-      '<div class="service-started">Service has started! Join us now!</div>';
-  }
-}, 1000);
+// Update every second
+setInterval(updateCountdown, 1000);
+updateCountdown(); // Initial call
+
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
   // Array of verses (you can expand this list)
@@ -941,7 +1029,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // Save functionality (using localStorage)
-  document.getElementById('save-verse').addEventListener('click', function() {
+document.getElementById('save-verse').addEventListener('click', function() {
     let savedVerses = JSON.parse(localStorage.getItem('savedVerses') || '[]');
     
     // Check if verse already saved
@@ -1074,6 +1162,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }, 1000);
 });
+
 
 </script>
 

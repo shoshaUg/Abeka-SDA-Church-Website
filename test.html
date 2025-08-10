@@ -155,3 +155,117 @@
     </script>
 </body>
 </html>
+
+
+<!-- Countdown and Live Section -->
+<section class="live-event-section">
+  <div class="countdown-container">
+    <h3>Next Live Service Starts In:</h3>
+    <div class="countdown-timer">
+      <div class="time-block">
+        <span id="days">00</span>
+        <span class="time-label">Days</span>
+      </div>
+      <div class="time-block">
+        <span id="hours">00</span>
+        <span class="time-label">Hours</span>
+      </div>
+      <div class="time-block">
+        <span id="minutes">00</span>
+        <span class="time-label">Minutes</span>
+      </div>
+      <div class="time-block">
+        <span id="seconds">00</span>
+        <span class="time-label">Seconds</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="live-stream-placeholder">
+    <div class="placeholder-message">
+      <i class="fas fa-video"></i>
+      <p>Our live stream will appear here when the service begins</p>
+    </div>
+    <div class="facebook-live-embed" id="facebookLiveEmbed" style="display: none;">
+      <!-- Facebook Live Embed will be inserted here by JavaScript -->
+    </div>
+  </div>
+</section>
+
+// Countdown Timer and Live Stream Implementation
+document.addEventListener('DOMContentLoaded', function() {
+  // Set your target date and time (YYYY, MM-1, DD, HH, MM, SS)
+  const targetDate = new Date(2025, 7, 9, 10, 30, 0); // December 25, 2023 at 10:00 AM
+  
+  // Facebook Live Video URL (replace with your actual live video URL)
+  const facebookLiveUrl = "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FYourPageName%2Fvideos%2F1234567890%2F&show_text=false";
+  
+  // Get DOM elements
+  const daysElement = document.getElementById('days');
+  const hoursElement = document.getElementById('hours');
+  const minutesElement = document.getElementById('minutes');
+  const secondsElement = document.getElementById('seconds');
+  const placeholder = document.querySelector('.placeholder-message');
+  const facebookEmbed = document.getElementById('facebookLiveEmbed');
+  
+  // Update countdown every second
+  const countdown = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+    
+    // If countdown is over
+    if (distance < 0) {
+      clearInterval(countdown);
+      showLiveStream();
+      return;
+    }
+    
+    // Calculate time units
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Display results
+    daysElement.textContent = padZero(days);
+    hoursElement.textContent = padZero(hours);
+    minutesElement.textContent = padZero(minutes);
+    secondsElement.textContent = padZero(seconds);
+  }, 1000);
+  
+  // Helper function to pad numbers with leading zero
+  function padZero(number) {
+    return number < 10 ? `0${number}` : number;
+  }
+  
+  // Function to show live stream
+  function showLiveStream() {
+    // Hide placeholder
+    placeholder.style.display = 'none';
+    
+    // Create Facebook embed iframe
+    facebookEmbed.innerHTML = `
+      <iframe src="${facebookLiveUrl}" 
+              width="100%" 
+              height="100%" 
+              style="border:none;overflow:hidden" 
+              scrolling="no" 
+              frameborder="0" 
+              allowfullscreen="true" 
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" 
+              allowFullScreen="true">
+      </iframe>
+    `;
+    
+    // Show the embed
+    facebookEmbed.style.display = 'block';
+    
+    // Optional: Scroll to the live stream
+    facebookEmbed.scrollIntoView({ behavior: 'smooth' });
+  }
+  
+  // Optional: Check if we should show live stream immediately if target time has passed
+  if (new Date() > targetDate) {
+    showLiveStream();
+  }
+});
