@@ -153,41 +153,62 @@
 html {
   scroll-behavior: smooth;
 }
-.typewriter {
-  font-family: monospace;
-  overflow: hidden;
-  white-space: nowrap;
-  position: relative;
-  margin: 0 auto;
-  text-align: center;
-}
+    /* Typewriter animation styles */
+        .typewriter-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .typewriter-text {
+            color: #fff; /* Change to your preferred color */
+            font-family: monospace;
+            overflow: hidden;
+            border-right: .15em solid orange; /* Cursor */
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: 
+                typing 3.5s steps(30, end),
+                blink-caret .75s step-end infinite;
+            font-size: 2.5rem; /* Default size for larger screens */
+        }
 
-.typewriter::after {
-  content: "|";
-  position: absolute;
-  animation: blink 1s step-end infinite;
-  right: -10px;
-}
+        /* The typing effect */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
 
-@keyframes blink {
-  from, to { opacity: 0 }
-  50% { opacity: 1 }
-}
-@media (max-width: 767px) {
-  .typewriter {
-    font-size: 2rem !important; /* Force fixed size */
-    transform: scale(0.9); /* Slight shrink if needed */
-  }
-}
+        /* The cursor blink effect */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange; }
+        }
 
- @media (max-width: 480px) {
-  .typewriter {
-    font-size: 1.2rem !important; /* Force fixed size */
-    transform: scale(0.7); /* Slight shrink if needed */
-  }
-}
- 
+        /* Responsive adjustments */
+        @media screen and (max-width: 1024px) {
+            .typewriter-text {
+                font-size: 2rem;
+            }
+        }
 
+        @media screen and (max-width: 768px) {
+            .typewriter-text {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .typewriter-text {
+                font-size: 1.2rem;
+                white-space: normal; /* Allow text to wrap on very small screens */
+                border-right: none; /* Remove cursor on smallest screens if needed */
+                animation: 
+                    typing 3.5s steps(30, end);
+                /* Remove blink-caret on small screens if it looks bad */
+            }
+        }
   /* Preloader container */
   #preloader {
     position: fixed;
@@ -353,9 +374,11 @@ html {
  <!-- Hero Section with Date/Time -->
   <section class="hero">
     <div class="hero-content">
-      <h1 class="typewriter" style="color: antiquewhite;">Welcome to <br>Abeka SDA Church</h1>
-      
+     <div class="typewriter-container">
+            <h1 class="typewriter-text" id="typewriter">Welcome to Abeka SDA Church</h1>
+        </div>
       <p>Where faith, hope, and love come together</p>
+     
       <div class="datetime">
         <div id="current-date"><i class="far fa-calendar-alt"></i> Loading date...</div>
         <div id="current-time"><i class="far fa-clock"></i> Loading time...</div>
@@ -781,42 +804,178 @@ html {
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
-  const element = document.querySelector('.typewriter');
-  const text = element.getAttribute('data-text');
-  let isDeleting = false;
-  let speed = 150; // Typing speed (ms per character)
-  let timer;
+  // Array of verses (you can expand this list)
+  const bibleVerses = [
+    {
+      text: "Trust in the LORD with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      reference: "Proverbs 3:5-6"
+    },
+    {
+      text: "I can do all this through him who gives me strength.",
+      reference: "Philippians 4:13"
+    },
+    {
+      text: "The LORD is my shepherd, I lack nothing.",
+      reference: "Psalm 23:1"
+    },
+    {
+      text: "For I know the plans I have for you, declares the LORD, plans to prosper you and not to harm you, plans to give you hope and a future.",
+      reference: "Jeremiah 29:11"
+    },
+    {
+      text: "But those who hope in the LORD will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",
+      reference: "Isaiah 40:31"
+    },
+    {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",
+      reference: "Philippians 4:6"
+    },
+    {
+      text: "Jesus Christ is the same yesterday and today and forever.",
+      reference: "Hebrews 13:8"
+    }
+  ];
+
+  // Get today's date to use as seed for verse selection
+  const today = new Date();
+  const startOfYear = new Date(today.getFullYear(), 0, 0);
+  const diff = today - startOfYear;
+  const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
   
-  function typeWriter() {
-    const currentText = element.textContent;
-    const targetText = text;
+  // Select verse based on day of year (cycles through array)
+  const verseIndex = dayOfYear % bibleVerses.length;
+  const todaysVerse = bibleVerses[verseIndex];
+  
+  // Display the verse
+  document.getElementById('verse-text').textContent = `"${todaysVerse.text}"`;
+  document.getElementById('verse-reference').textContent = todaysVerse.reference;
+  
+  // Share functionality
+  document.getElementById('share-verse').addEventListener('click', function() {
+    const shareText = `Today's Bible Verse: "${todaysVerse.text}" - ${todaysVerse.reference}`;
     
-    if (!isDeleting && currentText === targetText) {
-      // Pause at full text
-      isDeleting = true;
-      timer = setTimeout(typeWriter, 20000); // 20-second pause
-    } else if (isDeleting && currentText === '') {
-      // Start typing again
-      isDeleting = false;
-      timer = setTimeout(typeWriter, speed);
+    if (navigator.share) {
+      navigator.share({
+        title: 'Daily Bible Verse',
+        text: shareText,
+        url: window.location.href
+      }).catch(err => {
+        console.log('Error sharing:', err);
+        fallbackShare(shareText);
+      });
     } else {
-      // Typing/erasing
-      element.textContent = isDeleting 
-        ? targetText.substring(0, currentText.length - 1)
-        : targetText.substring(0, currentText.length + 1);
+      fallbackShare(shareText);
+    }
+  });
+  
+  // Save functionality (using localStorage)
+document.getElementById('save-verse').addEventListener('click', function() {
+    let savedVerses = JSON.parse(localStorage.getItem('savedVerses') || '[]');
+    
+    // Check if verse already saved
+    const alreadySaved = savedVerses.some(v => v.reference === todaysVerse.reference && v.text === todaysVerse.text);
+    
+    if (!alreadySaved) {
+      savedVerses.push({
+        text: todaysVerse.text,
+        reference: todaysVerse.reference,
+        dateSaved: new Date().toISOString()
+      });
+      localStorage.setItem('savedVerses', JSON.stringify(savedVerses));
       
-      timer = setTimeout(typeWriter, isDeleting ? speed/2 : speed);
+      // Visual feedback
+      const btn = document.getElementById('save-verse');
+      btn.innerHTML = '<i class="fas fa-check"></i> Saved!';
+      btn.style.backgroundColor = '#4CAF50';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="far fa-bookmark"></i> Save';
+        btn.style.backgroundColor = '';
+      }, 2000);
+    } else {
+      alert('This verse is already saved in your collection!');
+    }
+  });
+
+  // Fallback share method
+  function fallbackShare(text) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Verse copied to clipboard!');
+      }).catch(err => {
+        console.error('Could not copy text: ', err);
+        showToast('Failed to share verse');
+      });
+    } else {
+      // Last resort fallback
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      
+      try {
+        document.execCommand('copy');
+        showToast('Verse copied to clipboard!');
+      } catch (err) {
+        console.error('Fallback copy failed:', err);
+        showToast('Failed to share verse');
+      }
+      document.body.removeChild(textArea);
     }
   }
-  
-  // Start animation
-  timer = setTimeout(typeWriter, speed);
-  
-  // Cleanup on page leave
-  window.addEventListener('beforeunload', () => {
-    clearTimeout(timer);
-  });
+
+  // Show toast notification
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'verse-toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+      toast.classList.add('show');
+    }, 10);
+    
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => {
+        document.body.removeChild(toast);
+      }, 300);
+    }, 3000);
+  }
 });
+
+  document.addEventListener('DOMContentLoaded', function() {
+            const typewriterElement = document.getElementById('typewriter');
+            
+            function resetAnimation() {
+                // Remove the animation classes
+                typewriterElement.style.animation = 'none';
+                
+                // Trigger reflow
+                void typewriterElement.offsetWidth;
+                
+                // Re-add the animation
+                typewriterElement.style.animation = 
+                    'typing 3.5s steps(30, end), blink-caret .75s step-end infinite';
+                
+                // On very small screens, use simpler animation
+                if (window.innerWidth <= 480) {
+                    typewriterElement.style.animation = 'typing 3.5s steps(30, end)';
+                }
+            }
+            
+            // Run the animation immediately
+            resetAnimation();
+            
+            // Then run it every 15 seconds
+            setInterval(resetAnimation, 15000);
+            
+            // Also reset on window resize
+            window.addEventListener('resize', function() {
+                resetAnimation();
+            });
+        });
   
   window.addEventListener("load", function(){
     let preloader = document.getElementById("preloader");
@@ -970,147 +1129,8 @@ updateCountdown(); // Initial call
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Array of verses (you can expand this list)
-  const bibleVerses = [
-    {
-      text: "Trust in the LORD with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
-      reference: "Proverbs 3:5-6"
-    },
-    {
-      text: "I can do all this through him who gives me strength.",
-      reference: "Philippians 4:13"
-    },
-    {
-      text: "The LORD is my shepherd, I lack nothing.",
-      reference: "Psalm 23:1"
-    },
-    {
-      text: "For I know the plans I have for you, declares the LORD, plans to prosper you and not to harm you, plans to give you hope and a future.",
-      reference: "Jeremiah 29:11"
-    },
-    {
-      text: "But those who hope in the LORD will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",
-      reference: "Isaiah 40:31"
-    },
-    {
-      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",
-      reference: "Philippians 4:6"
-    },
-    {
-      text: "Jesus Christ is the same yesterday and today and forever.",
-      reference: "Hebrews 13:8"
-    }
-  ];
 
-  // Get today's date to use as seed for verse selection
-  const today = new Date();
-  const startOfYear = new Date(today.getFullYear(), 0, 0);
-  const diff = today - startOfYear;
-  const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
-  
-  // Select verse based on day of year (cycles through array)
-  const verseIndex = dayOfYear % bibleVerses.length;
-  const todaysVerse = bibleVerses[verseIndex];
-  
-  // Display the verse
-  document.getElementById('verse-text').textContent = `"${todaysVerse.text}"`;
-  document.getElementById('verse-reference').textContent = todaysVerse.reference;
-  
-  // Share functionality
-  document.getElementById('share-verse').addEventListener('click', function() {
-    const shareText = `Today's Bible Verse: "${todaysVerse.text}" - ${todaysVerse.reference}`;
-    
-    if (navigator.share) {
-      navigator.share({
-        title: 'Daily Bible Verse',
-        text: shareText,
-        url: window.location.href
-      }).catch(err => {
-        console.log('Error sharing:', err);
-        fallbackShare(shareText);
-      });
-    } else {
-      fallbackShare(shareText);
-    }
-  });
-  
-  // Save functionality (using localStorage)
-document.getElementById('save-verse').addEventListener('click', function() {
-    let savedVerses = JSON.parse(localStorage.getItem('savedVerses') || '[]');
-    
-    // Check if verse already saved
-    const alreadySaved = savedVerses.some(v => v.reference === todaysVerse.reference && v.text === todaysVerse.text);
-    
-    if (!alreadySaved) {
-      savedVerses.push({
-        text: todaysVerse.text,
-        reference: todaysVerse.reference,
-        dateSaved: new Date().toISOString()
-      });
-      localStorage.setItem('savedVerses', JSON.stringify(savedVerses));
-      
-      // Visual feedback
-      const btn = document.getElementById('save-verse');
-      btn.innerHTML = '<i class="fas fa-check"></i> Saved!';
-      btn.style.backgroundColor = '#4CAF50';
-      setTimeout(() => {
-        btn.innerHTML = '<i class="far fa-bookmark"></i> Save';
-        btn.style.backgroundColor = '';
-      }, 2000);
-    } else {
-      alert('This verse is already saved in your collection!');
-    }
-  });
 
-  // Fallback share method
-  function fallbackShare(text) {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => {
-        showToast('Verse copied to clipboard!');
-      }).catch(err => {
-        console.error('Could not copy text: ', err);
-        showToast('Failed to share verse');
-      });
-    } else {
-      // Last resort fallback
-      const textArea = document.createElement('textarea');
-      textArea.value = text;
-      textArea.style.position = 'fixed';
-      document.body.appendChild(textArea);
-      textArea.focus();
-      textArea.select();
-      
-      try {
-        document.execCommand('copy');
-        showToast('Verse copied to clipboard!');
-      } catch (err) {
-        console.error('Fallback copy failed:', err);
-        showToast('Failed to share verse');
-      }
-      document.body.removeChild(textArea);
-    }
-  }
-
-  // Show toast notification
-  function showToast(message) {
-    const toast = document.createElement('div');
-    toast.className = 'verse-toast';
-    toast.textContent = message;
-    document.body.appendChild(toast);
-    
-    setTimeout(() => {
-      toast.classList.add('show');
-    }, 10);
-    
-    setTimeout(() => {
-      toast.classList.remove('show');
-      setTimeout(() => {
-        document.body.removeChild(toast);
-      }, 300);
-    }, 3000);
-  }
-});
 
 document.addEventListener('DOMContentLoaded', function() {
   // Get elements
@@ -1176,7 +1196,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <!-- JavaScript -->
   <script src="script.js"></script>
   <script src="gallery.js"></script>
-
+<script src="sermon.js"></script>
 
 </body>
 </html>

@@ -404,22 +404,36 @@ html {
       <p id="motivational-quote">"Faith is taking the first step even when you don't see the whole staircase."</p>
       <p id="quote-author" class="quote-author">— Martin Luther King Jr.</p>
     </section>
-    <div class="container">
+   
         
  
 
-    <!-- Bible Search Section -->
-    <section id="verse-search" class="bible-search">
-      <h2><i class="fas fa-search"></i> Bible Verse Search</h2>
-      <div class="search-box">
-        <input type="text" id="verse-search" placeholder="e.g., John 3:16">
-        <button onclick="fetchVerse()" class="btn">
-          <i class="fas fa-search"></i> Search
-        </button>
-      </div>
-      <div id="verse-result" class="verse-result"></div>
-    </section>
-
+   <div class="bible-blaablaa-container">
+        <h1 class="bible-blaablaa-title">Search the Scriptures</h1>
+        
+        <div class="bible-blaablaa-translation">
+            <select class="bible-blaablaa-select" id="translationSelect">
+                <option value="kjv">King James Version (KJV)</option>
+                <option value="bbe">Bible in Basic English (BBE)</option>
+                <option value="web">World English Bible (WEB)</option>
+                <option value="oeb">Open English Bible (OEB)</option>
+                <option value="asv">American Standard Version (ASV)</option>
+            </select>
+        </div>
+        
+        <div id="#verse-search" class="bible-blaablaa-search">
+            <input type="text" class="bible-blaablaa-input" id="#verse-search bibleQuery" placeholder="e.g. John 3:16, Psalm 23:1-4, Genesis 1" required>
+            <button class="bible-blaablaa-button" id="searchButton">Search</button>
+        </div>
+        
+        <div class="bible-blaablaa-loading" id="loadingIndicator">
+            <div class="bible-blaablaa-spinner"></div>
+            <p>Searching the Word of God...</p>
+        </div>
+        
+        <div class="bible-blaablaa-results" id="resultsContainer"></div>
+    </div>
+<div class="container">
     <!-- Popular Verses Grid -->
 <section id="popular-verses" class="popular-verses">
   <h2><i class="fas fa-star"></i> Popular Verses</h2>
@@ -714,6 +728,101 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+            const searchButton = document.getElementById('searchButton');
+            const bibleQuery = document.getElementById('bibleQuery');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const translationSelect = document.getElementById('translationSelect');
+            
+            // Search on button click
+            searchButton.addEventListener('click', searchBible);
+            
+            // Search on Enter key
+            bibleQuery.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchBible();
+                }
+            });
+            
+            function searchBible() {
+                const query = bibleQuery.value.trim();
+                if (!query) return;
+                
+                const translation = translationSelect.value;
+                
+                // Show loading indicator
+                loadingIndicator.style.display = 'block';
+                resultsContainer.style.display = 'none';
+                resultsContainer.innerHTML = '';
+                
+                // Fetch from Bible API
+                fetch(`https://bible-api.com/${encodeURIComponent(query)}?translation=${translation}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Scripture not found. Please check your reference.');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        displayResults(data);
+                    })
+                    .catch(error => {
+                        showError(error.message);
+                    })
+                    .finally(() => {
+                        loadingIndicator.style.display = 'none';
+                    });
+            }
+            
+            function displayResults(data) {
+                resultsContainer.innerHTML = '';
+                
+                if (data.verses && data.verses.length > 0) {
+                    // Multiple verses
+                    const referenceElement = document.createElement('h2');
+                    referenceElement.className = 'bible-blaablaa-reference';
+                    referenceElement.textContent = data.reference;
+                    resultsContainer.appendChild(referenceElement);
+                    
+                    data.verses.forEach(verse => {
+                        const verseElement = document.createElement('div');
+                        verseElement.className = 'bible-blaablaa-verse';
+                        verseElement.innerHTML = `
+                            <div class="bible-blaablaa-text">
+                                <sup>${verse.verse}</sup> ${verse.text}
+                            </div>
+                        `;
+                        resultsContainer.appendChild(verseElement);
+                    });
+                } else if (data.text) {
+                    // Single verse
+                    const verseElement = document.createElement('div');
+                    verseElement.className = 'bible-blaablaa-verse';
+                    verseElement.innerHTML = `
+                        <div class="bible-blaablaa-reference">${data.reference}</div>
+                        <div class="bible-blaablaa-text">${data.text}</div>
+                    `;
+                    resultsContainer.appendChild(verseElement);
+                }
+                
+                resultsContainer.style.display = 'block';
+            }
+            
+            function showError(message) {
+                resultsContainer.innerHTML = `
+                    <div class="bible-blaablaa-error">
+                        ${message}<br><br>
+                        <strong>Proper search format examples:</strong><br>
+                        - Single verse: John 3:16<br>
+                        - Verse range: Psalm 23:1-4<br>
+                        - Entire chapter: Genesis 1
+                    </div>
+                `;
+                resultsContainer.style.display = 'block';
+            }
+        });
 </script>
   <!-- JavaScript -->
   <script src="script.js"></script>
